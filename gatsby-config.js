@@ -1,10 +1,17 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  siteMetadata: {
+    title: 'lennythedev',
+    siteUrl: 'https://lennythedev.com',
+    description: 'dev adventures of Lenny'
+  },
+  plugins: [
+    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdown-pages`,
+        path: `${__dirname}/src/markdown-pages`
+      }
+    }
+  ]
 }
