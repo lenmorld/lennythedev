@@ -5,7 +5,8 @@ const styles = {
 	header: {
 		display: 'flex',
 		flexDirection: 'column',
-		alignItems: 'center'
+		alignItems: 'center',
+		borderBottom: '1px solid gray'
 	}
 }
 

@@ -1,12 +1,32 @@
 import React from 'react'
+import { Link } from 'gatsby'
 
 import BlogHeader from '../components/blog_header'
 
+const styles = {
+	blogTitleLink: {
+		fontSize: '20px',
+		margin: '10px auto',
+		fontWeight: 'bold'
+	},
+	container: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center'
+	}
+}
+
+// TODO: also put a preview here
 function BlogList({ edges }) {
 	return edges.map(edge => {
-		return (<div key={edge.node.frontmatter.path}>
-			{/* <div>{edge.node.frontmatter.date}</div> */}
-			<h3>{edge.node.frontmatter.title}</h3>
+		const { frontmatter } = edge.node
+		const { date, path, title } = frontmatter
+
+		// date
+		return (<div key={path}>
+			<div style={styles.blogTitleLink}>
+				<Link to={path}>{title}</Link>
+			</div>
 		</div>)
 	})
 }
@@ -15,7 +35,9 @@ function BlogLayout({ data }) {
 	// console.log(props)
 	return <div>
 		<BlogHeader />
-		<BlogList edges={data.allMarkdownRemark.edges} />
+		<div style={styles.container}>
+			<BlogList edges={data.allMarkdownRemark.edges} />
+		</div>
 	</div>
 }
 
