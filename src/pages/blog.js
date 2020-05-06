@@ -22,7 +22,6 @@ function BlogList({ edges }) {
 		const { frontmatter } = edge.node
 		const { date, path, title } = frontmatter
 
-		// date
 		return (<div key={path}>
 			<div style={styles.blogTitleLink}>
 				<Link to={path}>{title}</Link>
@@ -37,6 +36,10 @@ function BlogLayout({ data }) {
 		<BlogHeader />
 		<div style={styles.container}>
 			<BlogList edges={data.allMarkdownRemark.edges} />
+			<hr />
+			<div>
+				<Link to={`/tags`}>Browse by Tag</Link>
+			</div>
 		</div>
 	</div>
 }
