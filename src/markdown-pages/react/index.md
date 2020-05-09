@@ -1,9 +1,9 @@
 ---
 path: "/blog/hello-react"
 date: "2020-05-03"
-title: "Hello React"
+title: "Get started with React"
 tags: ["beginner", "react"]
-excerpt: "React stuff"
+excerpt: "React is a UI Framework that simplifies data-driven components"
 ---
 
-Hello React!
+React is a UI Framework that simplifies data-driven components

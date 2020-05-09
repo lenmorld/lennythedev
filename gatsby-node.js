@@ -1,8 +1,8 @@
 const path = require('path');
 
 const createTagPages = (createPage, posts) => {
-	const tagsTemplate = path.resolve('./src/templates/tags.js')
-	const tagTemplate = path.resolve('./src/templates/tag.js')
+	const tagsTemplate = path.resolve('./src/components/tags.js')
+	const tagTemplate = path.resolve('./src/components/tag.js')
 
 	const postsByTag = {}
 
@@ -48,7 +48,7 @@ exports.createPages = (({ graphql, actions }) => {
 	const { createPage } = actions
 
 	return new Promise((resolve, reject) => {
-		const blogPostTemplate = path.resolve('./src/templates/blogPost.js')
+		const blogPostTemplate = path.resolve('./src/components/blogPost.js')
 		resolve(
 			graphql(
 				`
@@ -60,7 +60,9 @@ exports.createPages = (({ graphql, actions }) => {
 									path
 									title
 									tags
+									date
 								}
+								excerpt
 							}
 						}
 					}

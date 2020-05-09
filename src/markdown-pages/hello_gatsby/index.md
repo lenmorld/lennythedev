@@ -1,9 +1,9 @@
 ---
 path: "/blog/hello-gatsby"
 date: "2020-05-05"
-title: "Hello Gatsby"
+title: "Rebuilding my Gatsby blog from scratch"
 tags: ["beginner", "gatsby"]
 excerpt: "Rebuilding my blog from scratch"
 ---
 
-Hello Gatsby!
+Gatsby is the perfect site generator for blogs

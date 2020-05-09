@@ -1,13 +1,15 @@
 import React from "react"
 import { Link } from "gatsby"
-import Header from "../components/header"
+// import Header from "../components/header"
+
+import PageLayout from "../components/pageLayout"
 
 export default function Contact() {
-	return (
-		<div>
-			<Link to="/">Home</Link>
-			<Header title="Contact" />
-			<p>Send us a message!</p>
-		</div>
-	)
+  return (
+    <PageLayout>
+      {/* <Link to="/">Home</Link> */}
+      <h1>Contact</h1>
+      <p>Send me a message!</p>
+    </PageLayout>
+  )
 }

@@ -1,10 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import PageLayout from "../components/pageLayout"
+
 const styles = {
 	tagsContainer: {
 		display: 'flex',
-		listStyle: 'none'
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		// listStyle: 'none',
 	},
 	tag: {
 		margin: '0 5px',
@@ -22,21 +26,19 @@ const TagsTemplate = (props) => {
 	const { tags } = pageContext
 
 	return (
-		<div>
+		<PageLayout>
 			<h1>Tags</h1>
-			< hr />
-			<ul style={styles.tagsContainer}>
+			<div style={styles.tagsContainer}>
 				{
 					tags.map(tag =>
-						<li key={tag} style={styles.tag}>
+						<span key={tag} style={styles.tag}>
 							<Link to={`tags/${tag}`}>
 								{tag}
 							</Link>
-						</li>)
+						</span>)
 				}
-			</ul>
-
-		</div>
+			</div>
+		</PageLayout>
 	)
 }
 
