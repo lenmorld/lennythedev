@@ -9,7 +9,7 @@ export default function Contact() {
     <PageLayout>
       {/* <Link to="/">Home</Link> */}
       <h1>Contact</h1>
-      <p>Send me a message!</p>
+      <p>Send me a message on <a href="https://twitter.com/lenmorld">Twitter 🐥</a></p>
     </PageLayout>
   )
 }

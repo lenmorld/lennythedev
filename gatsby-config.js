@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'lennythedev',
     siteUrl: 'https://lennythedev.com',
-    description: 'dev adventures of Lenny'
+    description: 'web dev adventures of Lenny'
   },
   plugins: [
     {
@@ -21,6 +21,12 @@ module.exports = {
         name: `markdown-pages`,
         path: `${__dirname}/src/markdown-pages`
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
   ]
 }
