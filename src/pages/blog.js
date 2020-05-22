@@ -30,6 +30,9 @@ const styles = {
   excerpt: {
     // margin: `${MEDIUM_SPACING} auto`,
   },
+  active: {
+    color: "#053A00"  // TODO: consolidate with style.css
+  }
 }
 
 // TODO: also put a preview here
@@ -61,12 +64,18 @@ function BlogLayout({ data }) {
     <PageLayout>
       {/* <BlogHeader /> */}
       <div style={styles.container}>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+          {/* TODO: make a component */}
+          <h4 style={{ marginRight:'1rem' }}>
+            <Link to={`/tags`}>Browse by Tag</Link>
+          </h4>
+          <h4 style={styles.active}>
+            Latest first
+          </h4>
+        </div>
+        <hr />
         {/* <div>{data.allMarkdownRemark.totalCount} posts</div> */}
         <BlogList edges={data.allMarkdownRemark.edges} />
-        <hr />
-        <div>
-          <Link to={`/tags`}>Browse by Tag</Link>
-        </div>
       </div>
     </PageLayout>
   )

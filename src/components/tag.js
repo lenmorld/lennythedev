@@ -28,6 +28,9 @@ const styles = {
   },
   excerpt: {
     // margin: `${MEDIUM_SPACING} auto`,
+  },
+  active: {
+    color: "#053A00"  // TODO: consolidate with style.css
   }
 };
 
@@ -58,9 +61,9 @@ const TagsTemplate = (props) => {
   return (
     <PageLayout>
       {/* TODO: code font */}
-      <h1>
-        Posts about <i>{tagName}</i>
-      </h1>
+      <h4 style={styles.active}>
+        Browse by tag: <i>{tagName}</i>
+      </h4>
       <BlogList posts={posts} />
       {/* <ul style={styles.listContainer}>
 				{

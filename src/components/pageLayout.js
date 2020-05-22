@@ -8,7 +8,7 @@ const styles = {
 
 		// ### responsive ###
 		// maxWidth: '600px',
-		padding: `0 7vw`, // 7vw ~ 3rem(*16px) ~ 63px
+		// padding: `0 7vw`, // 7vw ~ 3rem(*16px) ~ 63px
 		maxWidth: '80%'
 	},
 	header: {

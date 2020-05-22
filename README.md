@@ -13,6 +13,6 @@ http://localhost:8000/___graphql
 ```bash
 $ gatsby build
 
-# to deploy
+# deploy on surge
 $ surge public/
 ```
