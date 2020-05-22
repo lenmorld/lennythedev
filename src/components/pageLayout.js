@@ -57,6 +57,12 @@ const Nav = (props) => {
 	)
 }
 
+function Social({link, name, icon}) {
+	return <div style={{ marginRight: '1rem' }}>
+		<a href={link}>{name} {icon}</a>
+	</div>
+}
+
 
 export default function PageLayout({ children }) {
 	return (
@@ -71,8 +77,11 @@ export default function PageLayout({ children }) {
 				{children}
 			</main>
 			<hr />
-			<footer style={{ paddingBottom: '1rem'}}>
-				<a href="https://twitter.com/lenmorld">Twitter 🐥</a>
+			<footer style={{ paddingBottom: '1rem', display: 'flex', justifyContent: 'flexStart'}}>
+				<Social link="https://twitter.com/lenmorld" name="Twitter" icon="🐥" />
+				<Social link="https://dev.to/lenmorld" name="DEV" icon="👨🏽‍💻" />
+				<Social link="https://ca.linkedin.com/in/lenmorld" name="LinkedId" icon="👨🏽‍💼" />
+				<Social link="https://codesandbox.io/dashboard/recent" name="Codesandbox" icon="💻" />
 			</footer>
 		</div >
 	)

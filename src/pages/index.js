@@ -13,7 +13,7 @@ export default function Home() {
       </p>
 
       <p>
-        When I'm not on my day job at Autodesk helping people <i>make anything</i> through software, I write workshop material and articles in this blog and at <a href="https://dev.to/lenmorld">dev.to</a>. I'm also doing (on-and-off-ing) the <a href="https://twitter.com/lenmorld">#100daysOfCode</a>. Lastly, I'm a mentor, and also looking for a mentor. Reach out if you're interested. 
+        When I'm not on my day job 👨🏽‍💼 at Autodesk helping people <i>make anything</i> through software, I prepare workshop material, and write articles on this site and on <a href="https://dev.to/lenmorld">dev.to</a> ✍🏽. I'm also doing (on-and-off-ing 😅) the <a href="https://twitter.com/lenmorld">#100daysOfCode</a>. Lastly, I'm also a mentor. Reach out via one of my socials 👇🏽 if you're interested.
       </p>
 
       <p>
