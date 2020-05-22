@@ -70,6 +70,10 @@ export default function PageLayout({ children }) {
 			<main>
 				{children}
 			</main>
+			<hr />
+			<footer style={{ paddingBottom: '1rem'}}>
+				<a href="https://twitter.com/lenmorld">Twitter 🐥</a>
+			</footer>
 		</div >
 	)
 }
