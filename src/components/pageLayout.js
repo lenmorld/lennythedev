@@ -40,6 +40,7 @@ const pages = [
 const ListLink = ({ to, style, children }) => {
 	return <li style={{
 		marginRight: `1rem`,
+		fontSize: '1rem',
 		...style
 	}}>
 		<Link to={to}>{children}</Link>
@@ -58,7 +59,7 @@ const Nav = (props) => {
 }
 
 function Social({link, name, icon}) {
-	return <div style={{ marginRight: '1rem' }}>
+	return <div style={{ marginRight: '1rem', fontSize: '1rem' }}>
 		<a href={link}>{name} {icon}</a>
 	</div>
 }
@@ -77,10 +78,10 @@ export default function PageLayout({ children }) {
 				{children}
 			</main>
 			<hr />
-			<footer style={{ paddingBottom: '1rem', display: 'flex', justifyContent: 'flexStart'}}>
+			<footer style={{ paddingBottom: '1rem', display: 'flex', justifyContent: 'flexStart', flexWrap: 'wrap'}}>
 				<Social link="https://twitter.com/lenmorld" name="Twitter" icon="🐥" />
 				<Social link="https://dev.to/lenmorld" name="DEV" icon="👨🏽‍💻" />
-				<Social link="https://ca.linkedin.com/in/lenmorld" name="LinkedId" icon="👨🏽‍💼" />
+				<Social link="https://ca.linkedin.com/in/lenmorld" name="LinkedIn" icon="👨🏽‍💼" />
 				<Social link="https://codesandbox.io/dashboard/recent" name="Codesandbox" icon="💻" />
 			</footer>
 		</div >

@@ -22,21 +22,23 @@ const Template = (props) => {
 					<div dangerouslySetInnerHTML={{ __html: html }}></div>
 				</div>
 			</article>
-			<footer>
-				<hr />
-				<div>
-					{
-						prev && <Link to={prev.frontmatter.path}>
-							⬅ Previous post
+			<div style={{ marginTop: '3rem', marginBottom: '1rem' }}>
+				{
+					prev && 
+					<Link to={prev.frontmatter.path}>
+						⬅ Previous post
+						</Link>
+				}
+				{
+					next && prev && <span style={{ marginRight: '1rem'}}></span>
+				}
+				{
+					next && 
+							<Link to={next.frontmatter.path}>
+								Next post ➡
 							</Link>
-					}
-					<span style={{ marginRight: '1rem' }}></span>
-					{
-						next && <Link to={next.frontmatter.path}>
-							Next post ➡</Link>
-					}
-				</div>
-			</footer>
+				}
+			</div>
 		</PageLayout>
 	)
 }

@@ -8,6 +8,7 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
+		marginBottom: '1rem'
 		// listStyle: 'none',
 	},
 	tag: {
