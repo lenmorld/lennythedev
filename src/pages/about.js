@@ -7,7 +7,8 @@ export default function About() {
 			<p>
 			<ul>
 				<li>I like going to high places that has a nice view</li>
-				<li>I'm silly and I like making up songs and silly words, like devving, database-ing, ...</li>
+				<li>I like making lists...</li>
+				<li>...and forgetting about them</li>
 			</ul>
 			</p>
 			<img src="https://res.cloudinary.com/dvfhgkkpe/image/upload/c_scale,w_353/v1590186732/lennythedev/lenny_mountain.jpg" alt="" />
