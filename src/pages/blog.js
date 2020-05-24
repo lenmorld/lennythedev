@@ -51,7 +51,8 @@ function BlogList({ edges }) {
         <div style={styles.blogTitleLink}>
           <Link to={path}>{title}</Link>
         </div>
-        <div style={styles.date}>{date}</div>
+        {/* FIXME: HIDE FOR NOW - because it shows age of the posts 😢 */}
+        {/* <div style={styles.date}>{date}</div> */}
         <div style={styles.excerpt}>{teaser}</div>
       </div>
     )

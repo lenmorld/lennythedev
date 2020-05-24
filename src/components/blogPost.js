@@ -16,7 +16,7 @@ const Template = (props) => {
 	return (
 		<PageLayout>
 			<article>
-				<h1>{title}</h1>
+				<h1 style={{ fontSize: '2rem', color: '#1d048d' }}>{title}</h1>
 				<div>
 					<span style={{ fontSize: '1rem', fontStyle: 'italic' }}>{date}</span>
 					<div dangerouslySetInnerHTML={{ __html: html }}></div>

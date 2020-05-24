@@ -5,6 +5,10 @@ body {
   padding: 0;
 }
 
+html {
+  overflow: auto;
+}
+
 h1, h2, h3, h4, a {
   font-family: 'Exo', Arial, Helvetica, sans-serif;
 }
