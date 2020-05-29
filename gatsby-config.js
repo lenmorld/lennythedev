@@ -5,6 +5,7 @@ module.exports = {
     description: 'web dev adventures of Lenny'
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {

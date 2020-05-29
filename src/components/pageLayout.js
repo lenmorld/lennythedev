@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { Helmet } from "react-helmet"
 
 const styles = {
 	body: {
@@ -69,6 +70,11 @@ function Social({link, name, icon}) {
 export default function PageLayout({ children }) {
 	return (
 		<div style={styles.body}>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Lenny the Dev</title>
+				<link rel="canonical" href="https://lennythedev.com" />
+	 		</Helmet>
 			<header style={styles.header}>
 				<Link style={{ textShadow: 'none', backgroundImage: 'none' }}>
 					<h2>lennythedev</h2>
