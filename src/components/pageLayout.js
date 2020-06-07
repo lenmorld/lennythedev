@@ -83,7 +83,7 @@ const Nav = (props) => {
 function Social({ link, name, icon }) {
   return (
     <div style={styles.footerItems}>
-      <a href={link}>
+      <a href={link} target="_blank" rel="noopener noreferrer">
         {name} {icon}
       </a>
     </div>
