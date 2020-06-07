@@ -60,7 +60,7 @@ const Nav = (props) => {
 	)
 }
 
-function Social({link, name, icon}) {
+function Social({ link, name, icon }) {
 	return <div style={{ marginRight: '1rem', fontSize: '1rem' }}>
 		<a href={link}>{name} {icon}</a>
 	</div>
@@ -74,7 +74,7 @@ export default function PageLayout({ children }) {
 				<meta charSet="utf-8" />
 				<title>Lenny the Dev</title>
 				<link rel="canonical" href="https://lennythedev.com" />
-	 		</Helmet>
+			</Helmet>
 			<header style={styles.header}>
 				<Link style={{ textShadow: 'none', backgroundImage: 'none' }}>
 					<h2>lennythedev</h2>
@@ -85,7 +85,7 @@ export default function PageLayout({ children }) {
 				{children}
 			</main>
 			<hr />
-			<footer style={{ paddingBottom: '1rem', display: 'flex', justifyContent: 'flexStart', flexWrap: 'wrap'}}>
+			<footer style={{ paddingBottom: '1rem', display: 'flex', justifyContent: 'flexStart', flexWrap: 'wrap' }}>
 				<Social link="https://twitter.com/lenmorld" name="Twitter" icon="🐥" />
 				<Social link="https://dev.to/lenmorld" name="DEV" icon="👨🏽‍💻" />
 				<Social link="https://ca.linkedin.com/in/lenmorld" name="LinkedIn" icon="👨🏽‍💼" />
