@@ -9,7 +9,11 @@ html {
   overflow: auto;
 }
 
-h1, h2, h3, h4, a {
+h1,
+h2,
+h3,
+h4,
+a {
   font-family: 'Exo', Arial, Helvetica, sans-serif;
 }
 
@@ -38,7 +42,7 @@ body {
 }
 
 main {
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 }
 
 /* CUSTOM STYLES */
