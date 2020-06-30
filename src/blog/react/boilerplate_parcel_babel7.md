@@ -1,12 +1,13 @@
 ---
 path: "/blog/react-boilerplate-parcel-babel7"
 date: "2020-06-29"
-tags: ["react", "tooling", "boilerplate", "beginners"]
+tags: ["react", "tooling", "boilerplate", "beginners", "babel"]
 title: React Boilerplate with Parcel and Babel 7
 published: true
 description: Setup your React environment from scratch in under 5 minutes!
 ---
 
+<br />
 Tired of webpack config for setting up a React project? 😫
 
 Try Parcel!

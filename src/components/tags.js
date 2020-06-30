@@ -8,11 +8,12 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
-		marginBottom: '1rem'
+		marginBottom: '1rem',
 		// listStyle: 'none',
+		flexWrap: 'wrap'
 	},
 	tag: {
-		margin: '0 5px',
+		margin: '10px',
 		border: '1px solid gray',
 		padding: '10px',
 		backgroundColor: 'white',
