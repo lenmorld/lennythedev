@@ -119,7 +119,7 @@ Default build dir is `dist/`, but you can specify using `-d` e.g. `parcel build 
 Default port is 1234, but you can specify yours using
 `--port`, e.g. `parcel index.html --port 5000`
 
-# Finally, ignore these files to not blow up your Git repo 🧨
+# Finally, ignore these files to not blow up your Git repo ✅
 
 **.gitignore**
 
@@ -163,6 +163,8 @@ It also asks you for a sub-domain name <yourname>.surge.sh.
 So as long as it's not taken yet, go bananas 🤗!
 
 ![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1593476845/lennythedev/react-biolerplate-sample.png)
+
+💥
 
 🙌 Awesome! Catch you in the next one! 🤓
 
