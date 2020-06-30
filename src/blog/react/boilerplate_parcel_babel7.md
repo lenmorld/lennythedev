@@ -31,8 +31,8 @@ You can also install it globally if you're planning to run it as a CLI.
 
 # Create files
 
-Here's we have a basic HTML, CSS, JS and React setup.
-Nothing fancy
+Here we have a vanilla HTML, CSS, JS and React setup.
+Nothing fancy 🍦
 
 **index.html**
 
