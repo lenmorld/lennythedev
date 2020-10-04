@@ -90,14 +90,30 @@ function Social({ link, name, icon }) {
   );
 }
 
-export default function PageLayout({ children }) {
+export default function PageLayout({ children, 
+  metaPageImage="https://res.cloudinary.com/dvfhgkkpe/image/upload/v1601847024/lennythedev/opengraph_image_lennythe__dev.png", 
+  metaPageUrl="https://lennythedev.com", 
+  metaPageName="Lennythedev Page", 
+  metaDescription = "lennythedev page" }) {
+
+  // debugger;
   return (
     <div style={styles.body}>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Lenny the Dev</title>
         <link rel="canonical" href="https://lennythedev.com" />
+
+        {/* OpenGraph data */}
+        <meta property="og:title" content={metaPageName} />
+        <meta property="og:url" content={metaPageUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={metaPageImage} />
+        <meta property="og:site_name" content="lennythedev" />
+        <meta property="og:locale" content="en_CA" />
+        <meta property="og:description" content={metaDescription} />
       </Helmet>
+      
       <header style={styles.header}>
         <Link style={{ textShadow: "none", backgroundImage: "none" }}>
           <h2>lennythedev</h2>
