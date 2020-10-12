@@ -335,4 +335,16 @@ getBy* commands fail if not found, so `waitFor` waits until getBy* succeeds.
 https://github.com/lenmorld/react-test-library-boilerplate
 
 
+# Further reading
+
+- For a more in-depth discussion on fixing the `"not wrapped in act(...)" warning` and more examples in both Class and Function components, see this article by Kent C Dodds
+
+    - https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning
+
+- Here's the Github issue that I found when I struggled with this error before
+
+    - https://github.com/testing-library/react-testing-library/issues/667
+
+# Conclusion
+
 🙌 That's all for now! Hope this helps when you encounter that dreaded `not wrapped in act(...)` error and gives you more confidence when testing async behavior in your React components with React Testing Library. 👍
