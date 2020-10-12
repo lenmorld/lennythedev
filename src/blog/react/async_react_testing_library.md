@@ -37,6 +37,8 @@ Unless you're using the [experimental Suspense](https://reactjs.org/docs/concurr
 2. Data view
     - When data arrives, you set data to your state so it gets displayed in a Table, mapped into <li>s, or any data visualization have you.
 
+![fetch component example](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602540049/lennythedev/react_testing_library_fetchy.gif)
+
 ```js
 import React, { useEffect, useState } from "react";
 
@@ -222,6 +224,8 @@ This way, we are testing the component closer to how the user uses and sees it i
 
 
 # Async example 2 - an async state change
+
+![async checkbox state example](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602540049/lennythedev/react_testing_library_checky.gif)
 
 Say you have a simple checkbox that does some async calculations when clicked.
 We'll simulate it here with a 2 second delay before the `label` is updated:
