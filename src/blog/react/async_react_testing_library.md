@@ -276,7 +276,7 @@ it("updates state with delay - act() + mock timers", async () => {
     })
 
     screen.debug()
-    expect(screen.queryByLabelText("true")).toBeInTheDocument();
+    expect(screen.getByLabelText("true")).toBeInTheDocument();
 });
 ```
 
@@ -340,6 +340,10 @@ https://github.com/lenmorld/react-test-library-boilerplate
 - For a more in-depth discussion on fixing the `"not wrapped in act(...)" warning` and more examples in both Class and Function components, see this article by Kent C Dodds
 
     - https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning
+
+- Common mistakes when using React Testing Library
+
+    - https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
 
 - Here's the Github issue that I found when I struggled with this error before
 
