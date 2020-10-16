@@ -35,7 +35,7 @@ Unless you're using the [experimental Suspense](https://reactjs.org/docs/concurr
     - When data is not there yet, you may display a placeholder UI like a spinner, "Loading..." or some skeleton item. 
 
 2. Data view
-    - When data arrives, you set data to your state so it gets displayed in a Table, mapped into <li>s, or any data visualization have you.
+    - When data arrives, you set data to your state so it gets displayed in a Table, mapped into `<li>`s, or any data visualization have you.
 
 ![fetch component example](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602540049/lennythedev/react_testing_library_fetchy.gif)
 
@@ -106,6 +106,8 @@ describe.only("Fetchy", () => {
 });
 ```
 
+> `getByText()` finds element on the page that contains the given text. For more info on queries: [RTL queries](https://testing-library.com/docs/dom-testing-library/api-queries#queries)
+
 1. Render component
 2. `screen.debug()` logs the current HTML of document.body
 3. Assert Loading UI. It logs:
@@ -126,12 +128,14 @@ describe.only("Fetchy", () => {
     ...
     ```
 
-> ⏱ To use `advanceTimersByTime` to fake clock ticks, `useFakeTimers` on setup and `useRealTimers` on teardown
+> 🕐 Note that we use `jest.advanceTimersByTime` to fake clock ticks. This is so test runner / CI don't have to actually waste time waiting.
+To make it work, put `jest.useFakeTimers` on setup and `jest.useRealTimers` on teardown
 
 > 🖥 You can also put a selector here like `screen.debug(screen.getByText('test'))`. For more info: [RTL screen.debug](https://testing-library.com/docs/dom-testing-library/api-queries#screendebug)
 
 
-Tests pass...
+✅ Tests pass...
+
 ![all tests pass](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602539351/lennythedev/async_tests_pass.png)
 
 😱 but we're getting some console warnings 🔴
@@ -220,7 +224,48 @@ it("shows Loading and Data", async () => {
 
 This way, we are testing the component closer to how the user uses and sees it in the browser in the real world. No fake timers nor catching updates manually.
 
-[📚 Read more: RTL async utilities](https://testing-library.com/docs/vue-testing-library/cheatsheet#async-utilities)
+> 📚 Read more: [RTL async utilities](https://testing-library.com/docs/vue-testing-library/cheatsheet#async-utilities)
+
+❌😭 Oh no! Tests are failing again!
+
+![findBy timeout error](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602539351/lennythedev/find_by_timeout_error.png)
+
+> Note that if you have the jest fake timers enabled for the test where you're using async utils like `findBy*`, it will take longer to timeout, since it's a fake timer after all 🙃
+
+### Timeouts
+
+The default timeout of `findBy*` queries is 1000ms (1 sec), which means it will fail if it doesn't find the element after 1 second. 
+
+Sometimes you want it to wait longer before failing, like for our 3 second fetch. 
+We can add a `timeout` in the third parameter object `waitForOptions`.
+
+![findBy timeout options](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602539351/lennythedev/find_by_timeout_options.png)
+
+```js
+it("shows Loading and Data", async () => {
+    render(<Fetchy />);
+
+    expect(await screen.findByText("Loading", {}, { timeout: 3000 })).toBeInTheDocument();
+    screen.debug();
+
+    expect(await screen.findByText("Data:", {}, {timeout: 3000})).toBeInTheDocument();
+    screen.debug();
+});
+```
+
+![findBy timeout test passes](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602539351/lennythedev/find_by_timeout_passes.png)
+
+✅😄 All green finally!
+
+### Other async utils
+
+`findBy*` is a combination of `getBy*` and `waitFor`. You can also do:
+
+```js
+await waitFor(() => screen.getByText('Loading'), { timeout: 3000 })
+```
+
+> 📚 More details on findBy: [RTL findBy](https://testing-library.com/docs/dom-testing-library/api-queries#findby)
 
 
 # Async example 2 - an async state change
@@ -314,13 +359,15 @@ it("updates state with delay - RTL async utils", async () => {
 
     fireEvent.click(label);
 
-    expect(await screen.findByLabelText("true")).toBeInTheDocument();
-    // await waitFor(() => screen.getByLabelText("true"));
+    expect(await screen.findByLabelText("true", {}, { timeout: 2000 })).toBeInTheDocument();
+    // await waitFor(() => screen.getByLabelText("true"), { timeout: 2000 });
     screen.debug()
 });
 ```
 
-As before, `await` when the label we expect is found. Remember that we have to use `findBy*` which returns a promise that we can await.
+As before, `await` when the label we expect is found. Remember that we have to use `findBy*` which returns a promise that we can await. 
+
+Timeout is needed here since we are not under jest's fake timers, and state change only happens after 2 seconds.
 
 An alternative to `expect(await screen.findBy...)` is `await waitFor(() => screen.getBy...);`.
 getBy* commands fail if not found, so `waitFor` waits until getBy* succeeds.
