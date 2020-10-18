@@ -30,7 +30,8 @@ const styles = {
     margin: "0"
   },
   main: {
-    marginTop: "1.5rem"
+    marginTop: "1.5rem",
+    minHeight: '75vh'
   },
   footer: {
     borderTop: "1px solid gray",
