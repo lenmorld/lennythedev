@@ -1,0 +1,295 @@
+---
+title: ESLint and Prettier setup on VSCode for React devs
+date: "2020-10-24"
+description: How to configure ESLint and Prettier for React development on VSCode
+tags: ["eslint", "tooling", "prettier", "react", "vscode"]
+path: /eslint_prettier_babel_react_config
+---
+
+If I had a dollar for each time I had to setup ESLint and Prettier for a new project,
+I'd have enough to... hmmm, nevermind, probably just enough to go to Dollarama. 😅
+
+But still, it's enough times that I'd rather write about it now and copy-paste it later.
+Here's some quick snippets and a few details and tips to customize it.
+
+# TL;DR
+
+# What and why?
+
+You want to automate the enforcement of a code style guide for your (or your team's) JS code, so violations are:
+- identified early during dev time
+- fixed automatically to save time and energy
+
+> 📚 More on Style Guides: [Prettier - Building and enforcing a style guide](https://prettier.io/docs/en/why-prettier.html#building-and-enforcing-a-style-guide)
+
+Let's specify first what they both are to make the difference clear once and for all.
+
+## ESLint - a linter
+
+- linter, aka _static code analysis_ tool
+- identify and report bugs and problematic patterns, like syntax and semantic errors
+- e.g. undefined variables, modification of constants, implicit globals, use of `==`, ...
+- extremely configurable - rules to enable/disable, parsers, plugins
+
+## Prettier - a formatter
+
+- formatter, aka _prettifier_ or _pretty print_ tool
+- reprints your code to adhere to formatting rules of a style guide
+- e.g. fixes max line length, whitespace, tabs, spaces, semicolon, comma, ...
+
+In short, ESLint for **code quality** and Prettier for **code formatting**
+
+# ESLint - install and config
+
+```bash
+# install eslint as a dev dep on your project
+npm install eslint -D
+# initial config
+npx eslint --init
+```
+`eslint --init` shows a wizard-like CLI to setup ESLint and install deps at the end.
+
+> `npx` is a tool that ships with npm to run locally installed tools
+
+Here's the options I picked:
+
+![eslint init options for react](eslint_init_options_react.png)
+
+Results:
+
+**`.eslintrc.js`**
+
+```js
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+  ],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+  ],
+  rules: {
+  },
+};
+```
+
+**`package.json`**
+
+```json
+  "devDependencies": {
+    ...
+    "eslint": "^7.12.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    ...
+  }
+```
+
+> 📚 Full details on config options here: [Configuring ESLint](https://eslint.org/docs/user-guide/configuring)
+
+
+## Watch out for global and local ESLint conflicts
+
+If you have ESLint installed and configured both globally (in your machine) and locally (in your project), you might get this error.
+
+![](2020-10-26-21-45-22.png)
+
+I suggest to "Allow" local config to be used, to respect individual repo's ESLint rules. Any plugins you use must be installed locally anyways.
+
+![](2020-10-26-21-45-37.png)
+
+
+# Prettier - install and config
+
+```bash
+# install prettier to dev deps with exact version instead of semvar range
+npm install --save-dev --save-exact prettier
+# create an empty config file, initialize with an empty object
+echo {}> .prettierrc.json
+```
+
+Put these in:
+
+**`.prettierrc.json`**
+```json
+{
+  "printWidth": 85,
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true
+}
+```
+
+Quick rundown of the options:
+- `printWidth`: max line length. More than that, Prettier wraps to next line
+- `tabWidth`: number of spaces per indent
+- `semi`: semicolons required if true
+- `singleQuote`: strings must be 'single quoted' if true
+
+There's only a few options to configure for Prettier, compared to ESLint.
+
+> 📚 More details at [Prettier install and initial config](https://prettier.io/docs/en/install.html)
+
+
+# Integrating ESLint with Prettier
+
+## Run Prettier from ESLint
+
+We'll use an ESLint plugin that runs Prettier as if it was a linter rule.
+
+```bash
+npm install --save-dev eslint-plugin-prettier
+```
+
+1. Add `prettier` plugin to our ESLint config, using the `plugins` prop.
+2. In the `rules` array, add prettier as "error" as the last item
+
+**`..eslintrc.js`**
+```js
+{
+  "plugins": ["prettier"],
+  "rules": {
+    ...other rules...
+    "prettier/prettier": "error"
+  }
+}
+```
+
+> 📚 The other way to integrate is to run both ESLint and Prettier separately. See [Prettier ESLint](https://github.com/prettier/prettier-eslint) for that option
+
+
+## Eliminate conflicting rules
+
+Fundamentally, it's better to leave **code quality** to ESLint, and **code formatting** to Prettier.
+But ESLint also have stylistic rules that can conflict with Prettier, like semicolon and quotes rules.
+
+To resolve this, we'll use an ESLint config to turn off rules that conflicts with Prettier.
+
+```bash
+npm install --save-dev eslint-config-prettier
+```
+
+Add `prettier/recommended` config rules to our ESLint config, using the `extends` prop.
+If it's not an array, make it an array and add the prettier as the last entry.
+
+**`.eslintrc.js`**
+```js
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ]
+}
+```
+
+This is the [Recommended Configuration](https://github.com/prettier/eslint-plugin-prettier#recommended-configuration) when using `eslint-plugin-prettier` plugin and `eslint-config-prettier` config
+
+> The other option is to [put `prettier` in config instead](https://github.com/prettier/eslint-config-prettier#installation)
+
+
+🤖 Last piece is to automate these fixes by integrating into the code editor.
+
+# VSCode
+
+## Install extension
+
+Install this one form VSCode's extensions
+
+![](2020-10-26-21-23-12.png)
+
+> 📒 Note that since we are using ESLint to run Prettier, you won't need the Prettier extension.
+
+## Configure fix-on-save
+
+In VSCode, go to Settings (cmd + r) then search for "Code actions on save".
+Click "Edit in settings.json"
+
+![](2020-10-26-20-53-54.png)
+
+Add these somewhere in the object:
+
+**`settings.json`**
+```json
+"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+},
+"eslint.validate": ["javascript"],
+```
+
+# React
+
+If doing React dev, you can customize
+
+
+----
+----
+
+# Troubleshooting
+
+Common pitfalls and solutions when configuring ESLint and Prettier
+
+## Global vs local(project) ESLint installation
+
+Another reason why it's not working well is if you have ESLint installed and configured both globally 
+on the machine and locally on the project.
+
+Your editor is conflicted on which config to use: global or local?
+
+The advantage with a global installation is that you only have to set it up once on your machine, but...
+
+### Issues with Global ESLint installation
+
+Now you have ESLint installed, but it's still now working! 😭
+
+1. The issue is when you use the same machine to contribute in projects with its local ESLint. 
+
+    In VSCode, you might see something like this:
+
+    ![VSCode ESLint not working](2020-10-25-08-57-38.png)
+
+    ![VSCode choose ESLint global or local](2020-10-24-22-49-58.png)
+
+    Usually, I "Allow" local config to be used, so I follow the project repo's style guide, so I don't accidentally commit a 300-line whitespace change. :true-story:
+
+2. The other issue is that any plugins you use must be installed locally anyways.
+
+So, local ESLint is my suggestion here, esp. if you're like me who works in many different public repos with different style guides.
+
+### Uninstalling global packages
+
+To check for packages installed globally on your machine:
+```bash
+npm list -g --depth 0
+```
+
+Uninstall any `eslint` or `prettier` packages
+```bash
+npm uninstall -g eslint prettier
+```
+
+
+# Bonus: Using ESLint and Prettier CLI
+
+====
+
+
+https://thomlom.dev/setup-eslint-prettier-react/
+
+
+https://www.robinwieruch.de/prettier-eslint
+
+https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a
