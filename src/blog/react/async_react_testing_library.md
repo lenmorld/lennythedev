@@ -39,7 +39,7 @@ Unless you're using the [experimental Suspense](https://reactjs.org/docs/concurr
 
 ![fetch component example](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602540049/lennythedev/react_testing_library_fetchy.gif)
 
-```js
+```jsx
 import React, { useEffect, useState } from "react";
 
 const Fetchy = () => {

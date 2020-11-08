@@ -1,0 +1,15 @@
+/* prismjs overrides */
+
+
+.gatsby-highlight code[class*="language-"], :not(pre) > code[class*="language-"]  {
+    font-size: 0.75em;
+}
+
+:not(pre) > code[class*="language-"] {
+    /* shade of main purple
+        https://maketintsandshades.com/#1d048d
+    */
+    background: #e8e6f4; 
+    color: inherit;
+}
+
