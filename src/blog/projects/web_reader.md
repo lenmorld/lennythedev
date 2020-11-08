@@ -11,8 +11,6 @@ description: Let your browser read articles and web pages for you!
 _Originally posted in_
 [dev.to](https://dev.to/lenmorld/web-reader-using-web-speech-api-bkn)
 
----
-
 Demo here: <a href="https://stupefied-curran-2254b8.netlify.com/" target="_blank">Web Reader @ Netlify</a>
 
 Have you ever been TLDR (Too LAZY didn't read) to read an online article or any webpage of some sort...

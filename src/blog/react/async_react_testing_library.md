@@ -7,7 +7,6 @@ published: true
 description: Fix the "not wrapped in act(...)" and other issues when testing async behavior in React components
 ---
 
-# 
 When testing React components with async state changes, like when data fetching with `useEffect`, you might get this error:
 
 ![not wrapped in act error](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1602539351/lennythedev/not_wrapped_in_act_error.png)

@@ -27,8 +27,9 @@ const Template = (props) => {
           <div style={{ marginBottom: "0.5rem" }}>
             <b>{description}</b>
           </div>
-          <TagsList tags={tags} />
           <span style={{ fontSize: "1rem", fontStyle: "italic" }}>{date}</span>
+          <TagsList tags={tags} />
+          <hr />
           <div dangerouslySetInnerHTML={{ __html: html }}></div>
         </div>
       </article>

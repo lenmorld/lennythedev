@@ -7,7 +7,6 @@ published: true
 description: Setup your React environment from scratch in under 5 minutes!
 ---
 
-<br />
 Tired of webpack config for setting up a React project? 😫
 
 Try Parcel!

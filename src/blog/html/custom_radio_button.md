@@ -83,20 +83,19 @@ Hover effects make it even nicer!
 }
 ```
 
-## Associate label with out custom input
+## Associate label with our custom input
 
 There's two ways to do this:
 
 1. Include an `id` in the input and refer that label with `for`
-
-    ```html
-    <input type="radio" id="cat" />
-    <label for="cat"></label>
-    ```
+  ```html
+  <input type="radio" id="cat" />
+  <label for="cat"></label>
+  ```
 
 2. Implicitly associate a label with a control by enclosing it
 
-Source: [w3 Label element specs](https://www.w3.org/TR/html401/interact/forms.html#h-17.9.1)
+    Source: [w3 Label element specs](https://www.w3.org/TR/html401/interact/forms.html#h-17.9.1)
 
     ```html
     <label>
@@ -104,16 +103,16 @@ Source: [w3 Label element specs](https://www.w3.org/TR/html401/interact/forms.ht
     </label>
     ```
 
-The 2nd one seems more appropriate in a custom radio, since we're enclosing the orig. input and the custom one.
+    The 2nd one seems more appropriate in a custom radio, since we're enclosing the orig. input and the custom one.
 
-```html
-<label class="container">
-    <span class="label">Dog</span>
-    <input type="radio" name="pets" value="dog" />
-    <span class="radio"></span>
-</label>
+    ```html
+    <label class="container">
+        <span class="label">Dog</span>
+        <input type="radio" name="pets" value="dog" />
+        <span class="radio"></span>
+    </label>
 
-```
+    ```
 
 ## indicator using `:after` 
 
