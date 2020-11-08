@@ -15,12 +15,12 @@ const Template = (props) => {
 
   const { next, prev } = pageContext;
 
+  // h1 style={{ fontSize: "2rem", color: "#1d048d", margin: "1.25rem auto" }}
+
   return (
     <PageLayout>
       <article>
-        <h1
-          style={{ fontSize: "2rem", color: "#1d048d", margin: "1.25rem auto" }}
-        >
+        <h1>
           {title}
         </h1>
         <div>

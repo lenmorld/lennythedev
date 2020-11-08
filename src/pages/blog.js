@@ -30,9 +30,6 @@ const styles = {
   excerpt: {
     // margin: `${MEDIUM_SPACING} auto`,
   },
-  active: {
-    color: "#053A00"  // TODO: consolidate with style.css
-  }
 }
 
 // TODO: also put a preview here
@@ -70,7 +67,7 @@ function BlogLayout({ data }) {
           <h4 style={{ marginRight:'1rem' }}>
             <Link to={`/tags`}>Browse by Tag</Link>
           </h4>
-          <h4 style={styles.active}>
+          <h4>
             Latest first
           </h4>
         </div>
