@@ -4,20 +4,12 @@ import { Helmet } from "react-helmet";
 
 const styles = {
   body: {
-    margin: `0 auto`,
-    // padding: `0 3rem`,
-
-    // ### responsive ###
-    // maxWidth: '600px',
-    // padding: `0 7vw`, // 7vw ~ 3rem(*16px) ~ 63px
-    maxWidth: "80%"
   },
   header: {
-    // marginBottom: `1.5rem`,
     marginTop: `1.5rem`,
     display: "flex",
     flexDirection: "row",
-    // alignItems: 'center',
+    alignItems: 'center',
     justifyContent: "space-between",
     flexWrap: "wrap"
   },
@@ -25,7 +17,7 @@ const styles = {
     listStyle: "none",
     display: "flex",
     flexDirection: "row",
-    // alignItems: 'center',
+    alignItems: 'center',
     flexWrap: "wrap",
     margin: "0"
   },
@@ -71,11 +63,11 @@ const ListLink = ({ to, style, children }) => {
   );
 };
 
-const Nav = (props) => {
+const Nav = () => {
   return (
     <ul style={styles.nav}>
       {pages.map((page) => (
-        <ListLink to={page.path}>{page.name}</ListLink>
+        <ListLink key={page.name} to={page.path}>{page.name}</ListLink>
       ))}
     </ul>
   );
@@ -116,20 +108,27 @@ export default function PageLayout({ children,
       </Helmet>
       
       <header style={styles.header}>
-        <Link style={{ textShadow: "none", backgroundImage: "none" }}>
-          <h2>lennythedev</h2>
-        </Link>
+        <h3 style={{margin: '0'}}>
+          <Link to={"/"}>
+            lennythedev
+          </Link>
+        </h3>
         <Nav />
       </header>
       <main style={styles.main}>{children}</main>
       {/* <hr /> */}
       <footer style={styles.footer}>
         <Social link="https://twitter.com/lenmorld" name="Twitter" icon="🐥" />
+        <Social
+          link="https://codesandbox.io/dashboard/recent"
+          name="Codesandbox"
+          icon="💻"
+        />
         <Social link="https://dev.to/lenmorld" name="DEV" icon="👨🏽‍💻" />
         <Social
-          link="https://ca.linkedin.com/in/lenmorld"
-          name="LinkedIn"
-          icon="👨🏽‍💼"
+          link="https://github.com/lenmorld"
+          name="Github"
+          icon="👥" 
         />
         <Social
           link="https://codesandbox.io/dashboard/recent"
