@@ -44,8 +44,7 @@ In short, ESLint for **code quality** and Prettier for **code formatting**
 # Initial repo
 
 Here's an example React repo using bare-bones Parcel and Babel.
-It has some errors but without any linting yet.
-Files of interest are `src/Hello.jsx` and `src/hooks.jsx`
+Focus on `src/Hello.jsx` with a lot of formatting errors, which we want to lint.
 
 [Github: react_eslint_prettier](https://github.com/lenmorld/lennythedev_src/tree/react_eslint_prettier_1/react_eslint_prettier)
 
