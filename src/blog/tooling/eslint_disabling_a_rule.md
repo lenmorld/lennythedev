@@ -3,7 +3,7 @@ title: ESLint Config
 date: "2019-07-05"
 description: Disabling a rule in ESLint is super easy!
 tags: ["eslint", "tooling"]
-path: /eslint_config
+path: /eslint_disabling_a_rule
 ---
 
 ## Disabling a rule

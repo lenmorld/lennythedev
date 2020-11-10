@@ -1,0 +1,65 @@
+Throughout your React dev journey though, you most likely have to:
+- set up a new React project from scratch like with [Parcel](https://parceljs.org/recipes.html)
+- enforce a style guide for your team
+- automate formatting and detect errors
+- automate  and auto-fixing on your personal project
+
+----
+----
+
+# Troubleshooting
+
+Common pitfalls and solutions when configuring ESLint and Prettier
+
+## Global vs local(project) ESLint installation
+
+Another reason why it's not working well is if you have ESLint installed and configured both globally 
+on the machine and locally on the project.
+
+Your editor is conflicted on which config to use: global or local?
+
+The advantage with a global installation is that you only have to set it up once on your machine, but...
+
+### Issues with Global ESLint installation
+
+Now you have ESLint installed, but it's still now working! 😭
+
+1. The issue is when you use the same machine to contribute in projects with its local ESLint. 
+
+    In VSCode, you might see something like this:
+
+    ![VSCode ESLint not working](2020-10-25-08-57-38.png)
+
+    ![VSCode choose ESLint global or local](2020-10-24-22-49-58.png)
+
+    Usually, I "Allow" local config to be used, so I follow the project repo's style guide, so I don't accidentally commit a 300-line whitespace change. :true-story:
+
+2. The other issue is that any plugins you use must be installed locally anyways.
+
+So, local ESLint is my suggestion here, esp. if you're like me who works in many different public repos with different style guides.
+
+### Uninstalling global packages
+
+To check for packages installed globally on your machine:
+```bash
+npm list -g --depth 0
+```
+
+Uninstall any `eslint` or `prettier` packages
+```bash
+npm uninstall -g eslint prettier
+```
+
+
+
+
+====
+
+# Bonus: Using ESLint and Prettier CLI
+
+https://thomlom.dev/setup-eslint-prettier-react/
+
+
+https://www.robinwieruch.de/prettier-eslint
+
+https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a

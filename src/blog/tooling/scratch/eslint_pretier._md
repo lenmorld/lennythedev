@@ -6,7 +6,7 @@ tags: ["eslint", "tooling", "prettier", "react", "vscode"]
 path: /eslint_prettier_babel_react_config
 ---
 
-If I had a dollar for each time I had to setup ESLint and Prettier for a new project,
+If I had a dollar for each time I had to setup ESLint and Prettier for a project,
 I'd have enough to... hmmm, nevermind, probably just enough to go to Dollarama. 😅
 
 But still, it's enough times that I'd rather write about it now and copy-paste it later.
