@@ -158,18 +158,23 @@ Put these initial config in:
 
 ```json
 {
-  "printWidth": 85,
+  "printWidth": 80,
   "tabWidth": 2,
+  "useTabs": false,
   "semi": false,
-  "singleQuote": true
+  "singleQuote": false,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false
 }
 ```
 
-Quick rundown of the options:
+Quick rundown of some options:
 - `printWidth`: max line length. More than that, Prettier wraps to next line
 - `tabWidth`: number of spaces per indent
 - `semi`: semicolons required if true
-- `singleQuote`: strings must be 'single quoted' if true
+- `singleQuote`: strings must be 'single quoted' if true, "double quoted" if false
+- `jsxBracketSameLine` and `bracketSpacing` are **IMPORTANT FOR JSX** to make component tags more readable
 
 There's only a few options to configure for Prettier, compared to ESLint.
 
