@@ -114,7 +114,7 @@ The `eslint` wizard also installed configs and plugins for us.
 
 > 📚 Full details on config options here: [Configuring ESLint](https://eslint.org/docs/user-guide/configuring)
 
-You can also run [eslint CLI](https://eslint.org/docs/user-guide/command-line-interface) manually, e.g. `npx eslint --fix src/Hello.jsx`, but I want to focus here on integrating with VSCode
+You can also run [eslint CLI](https://eslint.org/docs/user-guide/command-line-interface) manually, e.g. `npx eslint --fix src/Hello.jsx` for a specific file and `npx eslint --fix .` to autofix all files, but I want to focus here on integrating with VSCode
 
 ## VSCode ESLint extension
 

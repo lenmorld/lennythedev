@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'lennythedev',
     siteUrl: 'https://lennythedev.com',
-    description: 'web dev adventures of Lenny'
+    description: 'web dev adventures of Lenny',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,17 +11,17 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-prismjs`
-          }
-        ]
-      }
+            resolve: `gatsby-remark-prismjs`,
+          },
+        ],
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `blog`,
-        path: `${__dirname}/src/blog`
-      }
+        path: `${__dirname}/src/blog`,
+      },
     },
     {
       resolve: `gatsby-plugin-typography`,
@@ -29,5 +29,5 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-  ]
+  ],
 }

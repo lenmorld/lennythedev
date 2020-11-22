@@ -1,46 +1,42 @@
-import React from "react";
-import { graphql, Link } from "gatsby";
+import React from 'react'
+import { graphql, Link } from 'gatsby'
 
-import PageLayout from "./pageLayout";
+import PageLayout from './pageLayout'
 
-import TagsList from "../components/tagsList";
+import TagsList from './tagsList'
 
 const Template = (props) => {
-  console.log(props);
+  const { data, pageContext } = props
+  const { markdownRemark } = data
+  const { html, frontmatter } = markdownRemark
+  const { title, date, tags, description } = frontmatter
 
-  const { data, pageContext } = props;
-  const { markdownRemark } = data;
-  const { html, frontmatter } = markdownRemark;
-  const { title, date, tags, description } = frontmatter;
-
-  const { next, prev } = pageContext;
+  const { next, prev } = pageContext
 
   // h1 style={{ fontSize: "2rem", color: "#1d048d", margin: "1.25rem auto" }}
 
   return (
     <PageLayout>
       <article>
-        <h1>
-          {title}
-        </h1>
+        <h1>{title}</h1>
         <div>
-          <div style={{ marginBottom: "0.5rem" }}>
+          <div style={{ marginBottom: '0.5rem' }}>
             <b>{description}</b>
           </div>
-          <span style={{ fontSize: "1rem", fontStyle: "italic" }}>{date}</span>
+          <span style={{ fontSize: '1rem', fontStyle: 'italic' }}>{date}</span>
           <TagsList tags={tags} />
           <hr />
-          <div dangerouslySetInnerHTML={{ __html: html }}></div>
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </div>
       </article>
-      <div style={{ marginTop: "3rem", marginBottom: "1rem" }}>
+      <div style={{ marginTop: '3rem', marginBottom: '1rem' }}>
         {prev && <Link to={prev.frontmatter.path}>⬅ Previous post</Link>}
-        {next && prev && <span style={{ marginRight: "1rem" }}></span>}
+        {next && prev && <span style={{ marginRight: '1rem' }} />}
         {next && <Link to={next.frontmatter.path}>Next post ➡</Link>}
       </div>
     </PageLayout>
-  );
-};
+  )
+}
 
 export const query = graphql`
   query($pathSlug: String!) {
@@ -54,6 +50,6 @@ export const query = graphql`
       }
     }
   }
-`;
+`
 
-export default Template;
+export default Template

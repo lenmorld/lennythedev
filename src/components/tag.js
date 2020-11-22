@@ -1,44 +1,44 @@
-import React from "react";
-import { Link } from "gatsby";
+import React from 'react'
+import { Link } from 'gatsby'
 
-import PageLayout from "../components/pageLayout";
+import PageLayout from './pageLayout'
 
 // TODO: DRY with blog.js
 // TODO: use flex and distributed spacing instead of all this margins
-const MEDIUM_SPACING = "0.75rem";
+const MEDIUM_SPACING = '0.75rem'
 const styles = {
   blogPreview: {
-    marginBottom: "2rem"
+    marginBottom: '2rem',
   },
   blogTitleLink: {
-    fontSize: "1.5rem",
+    fontSize: '1.5rem',
     //  margin: "5px auto",
     marginBottom: MEDIUM_SPACING,
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   date: {
-    fontSize: "1rem",
-    fontStyle: "italic",
-    marginBottom: MEDIUM_SPACING
+    fontSize: '1rem',
+    fontStyle: 'italic',
+    marginBottom: MEDIUM_SPACING,
   },
   container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
   excerpt: {
     // margin: `${MEDIUM_SPACING} auto`,
   },
   active: {
-    color: "#053A00"  // TODO: consolidate with style.css
-  }
-};
+    color: '#053A00', // TODO: consolidate with style.css
+  },
+}
 
 function BlogList({ posts }) {
   return posts.map((post) => {
     //  const { frontmatter, excerpt } = edge.node;
-    const { frontmatter, excerpt } = post;
-    const { date, path, title } = frontmatter;
+    const { frontmatter, excerpt } = post
+    const { date, path, title } = frontmatter
 
     return (
       <div key={path} style={styles.blogPreview}>
@@ -48,15 +48,15 @@ function BlogList({ posts }) {
         <div style={styles.date}>{date}</div>
         <div style={styles.excerpt}>{excerpt}</div>
       </div>
-    );
-  });
+    )
+  })
 }
 
 const TagsTemplate = (props) => {
-  const { pageContext } = props;
+  const { pageContext } = props
   // console.log(pageContext)
 
-  const { posts, tagName } = pageContext;
+  const { posts, tagName } = pageContext
 
   return (
     <PageLayout>
@@ -81,10 +81,10 @@ const TagsTemplate = (props) => {
 			</ul> */}
       <footer>
         <hr />
-        <Link to={`/tags`}>👆 Back to Tags</Link>
+        <Link to="/tags">👆 Back to Tags</Link>
       </footer>
     </PageLayout>
-  );
-};
+  )
+}
 
-export default TagsTemplate;
+export default TagsTemplate
