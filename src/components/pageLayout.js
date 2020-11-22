@@ -44,6 +44,7 @@ const pages = [
   { name: 'Home', path: '/' },
   { name: 'Blog', path: '/blog' },
   { name: 'Projects', path: '/projects' },
+  // { name: 'Workshops', path: '/workshops' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
 ]

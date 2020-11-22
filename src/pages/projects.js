@@ -2,6 +2,8 @@ import React from 'react'
 import { FaExternalLinkSquareAlt, FaGithubSquare } from 'react-icons/fa'
 import PageLayout from '../components/pageLayout'
 
+import projects from '../../projectsData'
+
 const styles = {
   grid: {
     display: 'grid',
@@ -30,6 +32,7 @@ const styles = {
   },
   img: {
     marginBottom: '0.75rem',
+    border: '1px solid lightgray',
   },
 }
 
@@ -37,42 +40,6 @@ const styles = {
 const Tag = ({ tag }) => {
   return <div style={styles.tag}>{tag}</div>
 }
-
-const projects = [
-  {
-    id: 'projecty1',
-    name: 'Projecty1',
-    liveLink: 'https://lennythedev.com',
-    githubLink: 'https://github.com/lenmorld',
-    imageLink:
-      'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1603799558/react_workshop_slides/2.png',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis magna vel mauris venenatis, id imperdiet justo pharetra. Morbi id volutpat ipsum, sit amet fringilla nisl. Suspendisse suscipit nec turpis nec placerat. Curabitur vulputate, velit id fringilla accumsan, velit urna interdum justo, in porta tortor neque luctus eros. Curabitur id dictum sem.',
-    tags: ['css', 'html'],
-  },
-  {
-    id: 'projecty2',
-    name: 'Projecty2',
-    liveLink: 'lennythedev.com',
-    githubLink: 'https://github.com/lenmorld',
-    imageLink:
-      'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1603799558/react_workshop_slides/2.png',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis magna vel mauris venenatis, id imperdiet justo pharetra. Morbi id volutpat ipsum, sit amet fringilla nisl. Suspendisse suscipit nec turpis nec placerat. Curabitur vulputate, velit id fringilla accumsan, velit urna interdum justo, in porta tortor neque luctus eros. Curabitur id dictum sem.',
-    tags: ['react', 'gatsby', 'vanilla'],
-  },
-  {
-    id: 'projecty3',
-    name: 'Projecty2',
-    liveLink: 'lennythedev.com',
-    githubLink: 'https://github.com/lenmorld',
-    imageLink:
-      'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1603799558/react_workshop_slides/2.png',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis magna vel mauris venenatis, id imperdiet justo pharetra. Morbi id volutpat ipsum, sit amet fringilla nisl. Suspendisse suscipit nec turpis nec placerat. Curabitur vulputate, velit id fringilla accumsan, velit urna interdum justo, in porta tortor neque luctus eros. Curabitur id dictum sem.',
-    tags: ['react', 'gatsby'],
-  },
-]
 
 const Project = ({
   project: {
@@ -98,7 +65,7 @@ const Project = ({
     >
       {liveLink && (
         <div>
-          <a href={liveLink}>
+          <a href={liveLink} rel="noopener noreferrer" target="_blank">
             <FaExternalLinkSquareAlt style={{ verticalAlign: 'middle' }} />
             &nbsp;
             <span>Visit site</span>
@@ -107,7 +74,7 @@ const Project = ({
       )}
       {githubLink && (
         <div>
-          <a href={githubLink}>
+          <a href={githubLink} rel="noopener noreferrer" target="_blank">
             <FaGithubSquare style={{ verticalAlign: 'middle' }} />
             &nbsp;
             <span>Github</span>
@@ -116,7 +83,11 @@ const Project = ({
       )}
     </div>
 
-    <a href={liveLink || githubLink || otherLink || '#'}>
+    <a
+      href={liveLink || githubLink || otherLink || '#'}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
       <img src={imageLink} alt={name} style={styles.img} />
     </a>
 
