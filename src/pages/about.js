@@ -4,6 +4,7 @@ import PageLayout from '../components/pageLayout'
 export default function About() {
   return (
     <PageLayout>
+      <h1>About me</h1>
       <p>
         <ul>
           <li>I like going to high places that has a nice view</li>

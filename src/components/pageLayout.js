@@ -12,16 +12,19 @@ const styles = {
     justifyContent: 'space-between',
     flexWrap: 'wrap',
   },
+  heading: {
+    margin: '1rem 2rem 0 0',
+  },
   nav: {
     listStyle: 'none',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
-    margin: '0',
+    margin: '1rem 0 0 0',
   },
   main: {
-    marginTop: '1.5rem',
+    // marginTop: '1.5rem',
     minHeight: '75vh',
   },
   footer: {
@@ -53,7 +56,7 @@ const ListLink = ({ to, style, children }) => {
   return (
     <li
       style={{
-        marginRight: `1rem`,
+        marginRight: `0.75rem`,
         fontSize: '1rem',
         ...style,
       }}
@@ -111,7 +114,7 @@ export default function PageLayout({
       </Helmet>
 
       <header style={styles.header}>
-        <h3 style={{ margin: '0' }}>
+        <h3 style={styles.heading}>
           <Link to="/">lennythedev</Link>
         </h3>
         <Nav />
