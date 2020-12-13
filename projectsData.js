@@ -51,6 +51,19 @@ const projects = [
     tags: ['react', 'node', 'serverless', 'netlify'],
   },
   {
+    id: 'songhub',
+    name: 'Songhub',
+    liveLink: 'https://songhubapp.herokuapp.com/',
+    githubLink: 'https://github.com/lenmorld/song-hub',
+    imageLink:
+      'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1607815207/lennythedev/songhub_home.png',
+    description: `Half-mini Spotify clone, half-song CRUD app. 
+      Login with Spotify for user profile access,  
+      Spotify playlists and full songs playback. 
+      Node web server and REST API, MongoDB Atlas cloud database. Deployed in a Heroku dyno.`,
+    tags: ['react', 'node', 'moongodb', 'spotify api', 'heroku', 'netlify'],
+  },
+  {
     id: 'recipe_app',
     name: 'Recipe App',
     liveLink: 'https://recipify.surge.sh/',
