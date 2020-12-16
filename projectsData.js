@@ -1,6 +1,18 @@
 // TODO: this should come from Github, Devpost, or a Headless CMS
 const projects = [
   {
+    id: 'ofish_mongodb',
+    name: 'O-FISH MongoDB - OSS contributor',
+    githubLink: 'https://github.com/WildAid/o-fish-web',
+    description: `Contributions to-date includes setting up test environment (Jest + React Test Library) with 
+      test documentation, writing first UI unit tests for login, fixing search UI issues, one of which included
+      a change in the MongoDB Realm serverless search function, and some refactoring. *O-FISH (Officer Fishery Information Sharing Hub), powered by MongoDB, is a multi-platform app for tracking 
+      marine boarding records and violations, to help protect vulnerable marine environments.*`,
+    imageLink:
+      'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1608038051/lennythedev/ofish_login.png',
+    tags: ['react', 'jest', 'react-test-library', 'open-source', 'mongodb'],
+  },
+  {
     id: 'react_workshop',
     name: 'React Workshops at SCS Concordia',
     liveLink: 'https://www.facebook.com/events/1818957074910385',

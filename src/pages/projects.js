@@ -1,8 +1,12 @@
 import React from 'react'
 import { FaExternalLinkSquareAlt, FaGithubSquare } from 'react-icons/fa'
+import { Remarkable } from 'remarkable'
+
 import PageLayout from '../components/pageLayout'
 
 import projects from '../../projectsData'
+
+const markdown = new Remarkable()
 
 const styles = {
   grid: {
@@ -103,13 +107,14 @@ const Project = ({
         <Tag tag={tag} />
       ))}
     </div>
-    <p>{description}</p>
+    <p dangerouslySetInnerHTML={{ __html: markdown.render(description) }} />
   </div>
 )
 
 export default function Projects() {
   return (
     <PageLayout>
+      <h1>Open source contributions</h1>
       <h1>Projects</h1>
       <div style={styles.grid}>
         {projects.map((proj) => (
