@@ -114,7 +114,6 @@ const Project = ({
 export default function Projects() {
   return (
     <PageLayout>
-      <h1>Open source contributions</h1>
       <h1>Projects</h1>
       <div style={styles.grid}>
         {projects.map((proj) => (
