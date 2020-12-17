@@ -104,14 +104,10 @@ const Project = ({
       }}
     >
       {tags.map((tag) => (
-        <Tag tag={tag} />
+        <Tag key={tag} tag={tag} />
       ))}
     </div>
-    {markdown.render(description) ? (
-      <p dangerouslySetInnerHTML={{ __html: markdown.render(description) }} />
-    ) : (
-      <p>{description}</p>
-    )}
+    <div dangerouslySetInnerHTML={{ __html: markdown.render(description) }} />
   </div>
 )
 

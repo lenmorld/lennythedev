@@ -2,7 +2,7 @@
 title: Workshops page
 date: "2020-10-22"
 description: Web Development Workshops with SCS Concordia
-path: /workshops/react_and_node_workshops
+path: /react_and_node_workshops
 tags: ["react", "node", "workshop"]
 ---
 
