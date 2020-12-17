@@ -3,9 +3,10 @@ title: Workshops page
 date: "2020-10-22"
 description: Web Development Workshops with SCS Concordia
 tags: ["react", "node", "workshop"]
-path: /workshops
+path: /react_and_node_workshops
 ---
 
+![React and Node workshops](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1606080277/react_node_workshop/Screen_Shot_2020-11-22_at_4.24.05_PM.png)
 # React workshop
 
 Build the UI for your next project!
