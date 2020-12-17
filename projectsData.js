@@ -1,5 +1,5 @@
 // TODO: this should come from Github, Devpost, or a Headless CMS
-//
+
 const projects = [
   {
     id: 'ofish_mongodb',

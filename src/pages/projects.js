@@ -107,7 +107,11 @@ const Project = ({
         <Tag tag={tag} />
       ))}
     </div>
-    <p dangerouslySetInnerHTML={{ __html: markdown.render(description) }} />
+    {markdown.render(description) ? (
+      <p dangerouslySetInnerHTML={{ __html: markdown.render(description) }} />
+    ) : (
+      <p>{description}</p>
+    )}
   </div>
 )
 
