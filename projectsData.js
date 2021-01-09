@@ -16,7 +16,7 @@ const projects = [
   {
     id: 'react_workshop',
     name: 'React Workshops at SCS Concordia',
-    liveLink: 'https://www.facebook.com/events/1818957074910385',
+    liveLink: 'https://lennythedev.com/react_and_node_workshops',
     // githubLink: 'https://github.com/lenmorld/react_workshop',
     imageLink:
       'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1606080112/react_node_workshop/react_workshop_2020.jpg',
@@ -29,7 +29,7 @@ const projects = [
   {
     id: 'node_workshop',
     name: 'Node Workshops at SCS Concordia',
-    liveLink: 'https://www.facebook.com/events/751112552346326',
+    liveLink: 'https://lennythedev.com/react_and_node_workshops',
     githubLink: 'https://github.com/lenmorld/node_workshop',
     imageLink:
       'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1606080122/react_node_workshop/node_workshop_2_august.jpg',

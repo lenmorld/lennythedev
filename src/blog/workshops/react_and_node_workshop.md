@@ -1,5 +1,5 @@
 ---
-title: Workshops page
+title: React and Node Workshops
 date: "2020-10-22"
 description: Web Development Workshops with SCS Concordia
 path: /react_and_node_workshops
