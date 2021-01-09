@@ -2,10 +2,8 @@
 
 my portfolio and blog 🤓🗂📒
 
-- built with Gatsby (React, Node, GraphQL)
-<img src="https://api.iconify.design/logos:gatsby.svg" alt="gatsby" width="15"/>
-- deployed to Netlify
-<img src="https://api.iconify.design/logos:netlify.svg" alt="netlify" width="15"/>
+- built with Gatsby (React, Node, GraphQL) <img src="https://api.iconify.design/logos:gatsby.svg" alt="gatsby" width="15"/>
+- deployed to Netlify <img src="https://api.iconify.design/logos:netlify.svg" alt="netlify" width="15"/>
 - made with ♥️
 
 ## 💻 Dev
