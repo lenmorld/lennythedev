@@ -120,6 +120,13 @@ export default function Projects() {
           <Project key={proj.id} project={proj} />
         ))}
       </div>
+      <h3>
+        See older projects and hackathon submissions @{' '}
+        <a href="https://devpost.com/lenmorld" target="_blank" rel="noreferrer">
+          my Devpost
+        </a>
+      </h3>
+      <br />
     </PageLayout>
   )
 }
