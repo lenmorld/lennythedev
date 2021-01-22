@@ -9,23 +9,36 @@ date_updated: "2021-01-21"
 
 ![VSCode ESLint code actions on save](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1605013884/lennythedev/vscode_eslint_prettier_fix_on_save_2.gif)
 
-If I had a dollar 💰 for each time I had to setup ESLint and Prettier for a project,
-I'd have enough to order take out 🥡!
+I find that I'm setting up ESLint and Prettier way too often nowadays, fumbling through blog posts, stack overflow questions, and official docs every time! 😑
 
 So I think it's time that I write about it now and copy-paste it later.
-Maybe you'll find it as useful as my future self would.
+Hopefully you'll find it as useful as my future self would. ⭐️
 
-# What and why?
+# What is linting and why do we need it?
 
-You want to automate the enforcement of a code style guide for your (or your team's) JS code, so violations are:
-- identified early during dev time 🔍
-- fixed automatically to save effort and mental energy 🤖
+You want to automate the enforcement of a code style guide for your (or your team's) JS code:
+- detect bugs and errors early during dev time 🔍
+- have them fixed automatically to save effort and mental energy 🤖
 
 > 📚 More on Style Guides: [Prettier - Building and enforcing a style guide](https://prettier.io/docs/en/why-prettier.html#building-and-enforcing-a-style-guide)
 
-Note that you don't need to setup ESLint if you're using tooling with **ESLint baked in**, like [Create React App](https://create-react-app.dev/docs/setting-up-your-editor/) or [codesandbox](https://codesandbox.io/) where the default VSCode has ESLint integrated.
 
-Let's specify first what they both are to make the difference clear once and for all.
+### You probably don't need this guide if:
+
+You use a framework with **ESLint baked in**, like 
+- [Gatsby](https://www.gatsbyjs.com/docs/how-to/custom-configuration/eslint)
+- an un-ejected [Create React App](https://create-react-app.dev/docs/setting-up-your-editor/)
+- [codesandbox](https://codesandbox.io/)
+
+### You need this guide if:
+
+You use a bare-bones React setup like 
+- [Parcel](https://parceljs.org/), 
+- [Next.js](https://nextjs.org/)
+- or if you ejected from CRA to have more control over settings
+
+Let's see how you can simplify your tooling once and for all!
+First let's clarify the difference between ESLint and Prettier.
 
 ## ESLint - a linter
 
@@ -47,7 +60,7 @@ In short, ESLint for **code quality** and Prettier for **code formatting**
 Here's an example React repo using bare-bones Parcel and Babel.
 Focus on `src/Hello.jsx` with a lot of formatting errors, which we want to lint.
 
-[Github: react_eslint_prettier](https://github.com/lenmorld/lennythedev_src/tree/react_eslint_prettier_1/react_eslint_prettier)
+- Github repo before fixes: [`react_eslint_prettier`](https://github.com/lenmorld/lennythedev_src/tree/react_eslint_prettier_1/react_eslint_prettier)
 
 > 📚 [Parcel](https://parceljs.org/) is a zero-config bundler as an alternative to Webpack. [Babel](https://babeljs.io/) compiles JSX and other new-gen JS to regular JS that browsers understand. 
 
@@ -153,7 +166,7 @@ npm install -DE prettier
 echo {}> .prettierrc.json
 ```
 
-Put these initial config in:
+Put this initial config:
 
 **`.prettierrc.json`**
 
@@ -170,7 +183,8 @@ Put these initial config in:
 }
 ```
 
-Quick rundown of some options:
+Feel free to customize to your liking. 
+Here's a quick rundown of some options:
 - `printWidth`: max line length. More than that, Prettier wraps to next line
 - `tabWidth`: number of spaces per indent
 - `semi`: semicolons required if true
@@ -269,6 +283,14 @@ Add these configs in the object:
 
 > 📚 For other options: [VSCode ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
+## Update: You don't need VSCode's Prettier extension and `formatOnSave` setting
+
+If you're using ESLint to run Prettier as defined here, make sure to either:
+
+1. Disable or remove [Prettier VSCode extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
+
+2. Leave the default or set VSCode's `editor.formatOnSave` to `false`. Having `codeActionsOnSave` set to `eslint` is the right way to go.
+
 # Fixing time!
 
 Go to all the files that has lint errors, and just save them.
@@ -315,13 +337,53 @@ Add it to the `extends`
 Now we're getting lint errors for using hooks in functions that are not components or custom hooks. 🔍
 
 
+# Update: Fix for weird formatting on JSX - use `prettier/react`
+
+![ESLint and Prettier - Weird JSX formatting](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1611280109/lennythedev/eslint_prettier_weird_formatting_jsx.gif)
+
+I noticed recently that even though auto fix was working fine on functions and hooks, JSX gets weird after a few indentation levels.
+
+### But why?
+
+We fixed [conflicting rules above](#eliminate-conflicting-rules) above. 
+But since we are using Airbnb preset, which enables `eslint-plugin-react` behind-the-scenes, this causes some conflicts! 😱
+
+Thus, the "tug of war" between ESLint and Prettier indentation and spacing rules. ⚔️
+
+### Add `prettier/react` exclusion
+
+As explained [here](https://github.com/prettier/eslint-config-prettier#installation), it's not enough to use 'prettier' or 'prettier-recommended' under `eslint-config-prettier` to override the other configs like Airbnb.
+
+We also have to add `prettier/react` at the end to override those rules.
+
+**`.eslintrc.js`**
+```js
+{
+  // ...
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
+    // ...
+    "prettier/react", // <--- add this
+  ]
+  // ...
+}
+```
+
+> 📚 For additional exclusions and more info [eslint-config-prettier installation](https://github.com/prettier/eslint-config-prettier#installation)
+
 # Code
 
-[Github: react_eslint_prettier after](https://github.com/lenmorld/lennythedev_src/tree/master/react_eslint_prettier)
-
+- Github repo after fixes: [`react_eslint_prettier`](https://github.com/lenmorld/lennythedev_src/tree/master/react_eslint_prettier)
 
 # Conclusion
 
-So hopefully this helps, because this will definitely help me. 🤓
+Hope this helps 🤞, because this will definitely help me. 🤓
+
+_Update: I've looked at this guide myself at least 5 times in the last few months._
+
+Worth it! 😄
 
 Catch you in the next one! Enjoy fixing those errors. ❌ ➡️ ✅
