@@ -9,7 +9,7 @@ const Template = (props) => {
   const { data, pageContext } = props
   const { markdownRemark } = data
   const { html, frontmatter } = markdownRemark
-  const { title, date, tags, description } = frontmatter
+  const { title, date, tags, description, date_updated } = frontmatter
 
   const { next, prev } = pageContext
 
@@ -23,7 +23,12 @@ const Template = (props) => {
           <div style={{ marginBottom: '0.5rem' }}>
             <b>{description}</b>
           </div>
-          <span style={{ fontSize: '1rem', fontStyle: 'italic' }}>{date}</span>
+          <div style={{ fontSize: '1rem', fontStyle: 'italic' }}>
+            <span>{date}</span>
+            {date_updated && (
+              <span>&nbsp;・&nbsp;Updated on {date_updated}</span>
+            )}
+          </div>
           <TagsList tags={tags} />
           <hr />
           <div dangerouslySetInnerHTML={{ __html: html }} />
@@ -47,6 +52,8 @@ export const query = graphql`
         date(formatString: "MMM DD, YYYY")
         tags
         description
+        cover_image
+        date_updated(formatString: "MMM DD, YYYY")
       }
     }
   }

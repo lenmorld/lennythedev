@@ -63,6 +63,7 @@ exports.createPages = ({ graphql, actions }) => {
                     title
                     tags
                     date
+                    date_updated
                   }
                   excerpt
                 }

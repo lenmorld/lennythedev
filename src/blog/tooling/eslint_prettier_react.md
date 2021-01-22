@@ -4,6 +4,7 @@ date: "2020-11-10"
 description: How to configure ESLint and Prettier for React development on VSCode
 tags: ["eslint", "prettier", "react", "vscode", "tooling", "advanced"]
 path: /eslint_prettier_react_vscode
+date_updated: "2021-01-21"
 ---
 
 ![VSCode ESLint code actions on save](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1605013884/lennythedev/vscode_eslint_prettier_fix_on_save_2.gif)
