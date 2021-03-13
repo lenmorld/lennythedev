@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
+import { FaTwitter, FaDev, FaGithubAlt } from 'react-icons/fa'
+import { FiCodesandbox } from 'react-icons/fi'
+
 const styles = {
   body: {},
   header: {
@@ -39,7 +42,6 @@ const styles = {
   footerItems: {
     display: 'block',
     marginRight: '1rem',
-    fontSize: '1rem',
   },
 }
 
@@ -78,12 +80,17 @@ const Nav = () => {
   )
 }
 
-function Social({ link, name, icon }) {
+function Social({ link, icon }) {
+  // instantiate icon from props - has to be capitalized
+  const Icon = icon
+
   return (
     <div style={styles.footerItems}>
-      <a href={link} target="_blank" rel="noopener noreferrer">
-        {name} {icon}
-      </a>
+      <div style={{ fontSize: '1.5rem' }}>
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          {Icon ? <Icon /> : ''}
+        </a>
+      </div>
     </div>
   )
 }
@@ -122,18 +129,21 @@ export default function PageLayout({
       <main style={styles.main}>{children}</main>
       {/* <hr /> */}
       <footer style={styles.footer}>
-        <Social link="https://twitter.com/lenmorld" name="Twitter" icon="🐥" />
         <Social
-          link="https://codesandbox.io/dashboard/recent"
-          name="Codesandbox"
-          icon="💻"
+          link="https://twitter.com/lennythedev2"
+          name="Twitter"
+          icon={FaTwitter}
         />
-        <Social link="https://dev.to/lenmorld" name="DEV" icon="👨🏽‍💻" />
-        <Social link="https://github.com/lenmorld" name="Github" icon="👥" />
         <Social
           link="https://codesandbox.io/dashboard/recent"
           name="Codesandbox"
-          icon="💻"
+          icon={FiCodesandbox}
+        />
+        <Social link="https://dev.to/lenmorld" name="DEV" icon={FaDev} />
+        <Social
+          link="https://github.com/lenmorld"
+          name="Github"
+          icon={FaGithubAlt}
         />
       </footer>
     </div>

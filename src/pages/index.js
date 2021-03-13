@@ -2,6 +2,12 @@ import React from 'react'
 
 import PageLayout from '../components/pageLayout'
 
+const SafeLink = ({ name, link }) => (
+  <a href={link} target="_blank" rel="noopener noreferrer">
+    {name}
+  </a>
+)
+
 export default function Home() {
   return (
     <PageLayout>
@@ -16,13 +22,14 @@ export default function Home() {
       <p>
         When I'm not on my day job 👨🏽‍💼 at Autodesk helping people{' '}
         <i>make anything</i> through software, I prepare workshop material 👨🏽‍🏫,
-        and write articles on this <a href="/blog">site</a> and on{' '}
-        <a href="https://dev.to/lenmorld">dev.to</a> ✍🏽. Check out my
-        contributions to open-source projects on{' '}
+        and write articles on my <SafeLink name="blog" link="/blog" /> and on{' '}
+        <SafeLink name="DEV" link="https://dev.to/lenmorld" />
+        ✍🏽. Check out my contributions to open-source projects on{' '}
         <a href="https://github.com/lenmorld">Github</a> and my regular (mostly
         on-and-off 😅) learnings on{' '}
-        <a href="https://twitter.com/lenmorld">Twitter</a>. By the way, I'm also
-        a mentor. Reach out via one of my socials 👇🏽 if you're interested.
+        <SafeLink name="Twitter" link="https://twitter.com/lennythedev2" />. By
+        the way, I'm also a mentor. Reach out via one of my socials 👇🏽 if you're
+        interested.
       </p>
 
       <p>
