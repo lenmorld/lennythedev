@@ -5,6 +5,8 @@ import { Helmet } from 'react-helmet'
 import { FaTwitter, FaDev, FaGithubAlt } from 'react-icons/fa'
 import { FiCodesandbox } from 'react-icons/fi'
 
+import Social from './social'
+
 const styles = {
   body: {},
   header: {
@@ -38,10 +40,6 @@ const styles = {
     justifyContent: 'space-around',
     flexWrap: 'wrap',
     alignItems: 'center',
-  },
-  footerItems: {
-    display: 'block',
-    marginRight: '1rem',
   },
 }
 
@@ -77,21 +75,6 @@ const Nav = () => {
         </ListLink>
       ))}
     </ul>
-  )
-}
-
-function Social({ link, icon }) {
-  // instantiate icon from props - has to be capitalized
-  const Icon = icon
-
-  return (
-    <div style={styles.footerItems}>
-      <div style={{ fontSize: '1.5rem' }}>
-        <a href={link} target="_blank" rel="noopener noreferrer">
-          {Icon ? <Icon /> : ''}
-        </a>
-      </div>
-    </div>
   )
 }
 
