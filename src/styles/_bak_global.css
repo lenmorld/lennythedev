@@ -1,0 +1,123 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+  font-size: 125%;
+  line-height: 1.45;
+}
+
+/* override browser default */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* html { */
+  /* overflow: auto; */
+/* } */
+
+body {
+  /* color: var(--primary); */
+  /* min-height: 100vh; */
+  /* font-family: 'Exo 2', sans-serif; */
+  font-family: 'Quattrocento Sans', sans-serif;
+  /* font-size: 20px; */
+ 
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+}
+
+/* override typography-theme-fairy-gates header nav li's weird margin bottom */
+header ul li {
+  margin-bottom: 0;
+}
+
+a {
+  text-shadow: none;
+  text-decoration: none;
+  color: #1d048d;
+}
+
+a:hover {
+  color: #1ca086;
+}
+
+/* h1,
+h2,
+h3,
+h4,
+a {
+  font-family: 'Exo', Arial, Helvetica, sans-serif;
+} */
+
+/* use viewport-relative units to cover page fully */
+/* body { */
+  /* height: 100vh; */
+  /* width: 100vw; */
+  /* font-family: Arial, Helvetica, sans-serif; */
+  /* font-weight: 400; */
+  /* font-size: 16px; */
+/* } */
+
+/* include border and padding in element width and height */
+/* * {
+  box-sizing: border-box;
+} */
+
+:root {
+  --primary: #393424;
+  --main-accent: #1d048d;
+  --secondary-accent: #2eff00;
+}
+
+/* main { */
+  /* margin-top: 2rem; */
+/* } */
+
+/* CUSTOM STYLES */
+
+/* a { */
+  /* text-decoration: none; */
+  /* color: var(--main-accent); */
+  /* font-size: 1rem; */
+/* } */
+
+/* a:hover { */
+  /* text-decoration: underline; */
+  /* color: var(--secondary-accent); */
+/* } */
+
+/* h1 { */
+  /* font-size: 6vw; */
+/* } */
+
+/* p { */
+  /* line-height: 2rem; */
+  /* font-size: 1rem; */
+  /* font-size: 4vw; */
+/* } */
+
+/**** theming ***/
+.dark {
+  background-color: #2a2b2d;
+  color: white;
+  transition: all 0.6s ease;
+}
+
+.light {
+  background-color: white;
+  color: #393424;
+  transition: all 0.6s ease;
+}
+
+.theme-switch {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
