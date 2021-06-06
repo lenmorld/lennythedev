@@ -1,30 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { getInitialTheme, persistTheme } from '../theming/helper'
+
+import COLORS from '../theming/colors'
 
 export const ThemeContext = React.createContext()
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = React.useState(getInitialTheme)
+  const [theme, rawSetTheme] = useState(undefined)
 
-  const isDark = theme === 'dark'
+  useEffect(() => {
+    const root = window.document.documentElement
 
-  const setThemeAndPersist = (value) => {
-    setTheme(value)
-    persistTheme(value)
-  }
+    const initialTheme = root.style.getPropertyValue('--initial-theme')
 
-  const toggleTheme = () => {
-    console.log(theme)
-    if (theme === 'dark') {
-      setThemeAndPersist('light')
-    } else if (theme === 'light') {
-      setThemeAndPersist('dark')
-    }
+    rawSetTheme(initialTheme)
+  }, [])
+
+  const setTheme = (newValue) => {
+    const root = window.document.documentElement
+
+    // update state
+    rawSetTheme(newValue)
+    // persist to localStorage
+    persistTheme(newValue)
+    // update styles
+    root.style.setProperty(
+      '--color-text',
+      newValue === 'light' ? COLORS.light.text : COLORS.dark.text,
+    )
+
+    root.style.setProperty(
+      '--color-background',
+      newValue === 'light' ? COLORS.light.background : COLORS.dark.background,
+    )
+
+    root.style.setProperty(
+      '--color-primary',
+      newValue === 'light' ? COLORS.light.primary : COLORS.dark.primary,
+    )
   }
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   )
