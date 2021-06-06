@@ -5,6 +5,8 @@ import { Helmet } from 'react-helmet'
 import { FaTwitter, FaDev, FaGithubAlt } from 'react-icons/fa'
 import { FiCodesandbox } from 'react-icons/fi'
 
+import { ThemeContext } from '../context/ThemeContext'
+import ThemeSwitch from './themeSwitch'
 import Social from './social'
 
 const styles = {
@@ -26,6 +28,9 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
+    margin: '1rem 0 0 0',
+  },
+  theme: {
     margin: '1rem 0 0 0',
   },
   main: {
@@ -85,50 +90,69 @@ export default function PageLayout({
   metaPageName = 'Lennythedev Page',
   metaDescription = 'lennythedev page',
 }) {
-  // debugger;
   return (
-    <div style={styles.body}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Lenny the Dev</title>
-        <link rel="canonical" href="https://lennythedev.com" />
+    <ThemeContext.Consumer>
+      {(theme) => {
+        const themeStyles = theme.isDark
+          ? {
+              backgroundColor: '#2a2b2d',
+              color: 'white',
+            }
+          : {
+              backgroundColor: 'white',
+              color: '#2a2b2d',
+            }
 
-        {/* OpenGraph data */}
-        <meta property="og:title" content={metaPageName} />
-        <meta property="og:url" content={metaPageUrl} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={metaPageImage} />
-        <meta property="og:site_name" content="lennythedev" />
-        <meta property="og:locale" content="en_CA" />
-        <meta property="og:description" content={metaDescription} />
-      </Helmet>
+        return (
+          <div style={{ ...styles.body, ...themeStyles }}>
+            <Helmet>
+              <meta charSet="utf-8" />
+              <title>Lenny the Dev</title>
+              <link rel="canonical" href="https://lennythedev.com" />
 
-      <header style={styles.header}>
-        <h3 style={styles.heading}>
-          <Link to="/">lennythedev</Link>
-        </h3>
-        <Nav />
-      </header>
-      <main style={styles.main}>{children}</main>
-      {/* <hr /> */}
-      <footer style={styles.footer}>
-        <Social
-          link="https://twitter.com/lennythedev2"
-          name="Twitter"
-          icon={FaTwitter}
-        />
-        <Social
-          link="https://codesandbox.io/dashboard/recent"
-          name="Codesandbox"
-          icon={FiCodesandbox}
-        />
-        <Social link="https://dev.to/lenmorld" name="DEV" icon={FaDev} />
-        <Social
-          link="https://github.com/lenmorld"
-          name="Github"
-          icon={FaGithubAlt}
-        />
-      </footer>
-    </div>
+              {/* OpenGraph data */}
+              <meta property="og:title" content={metaPageName} />
+              <meta property="og:url" content={metaPageUrl} />
+              <meta property="og:type" content="website" />
+              <meta property="og:image" content={metaPageImage} />
+              <meta property="og:site_name" content="lennythedev" />
+              <meta property="og:locale" content="en_CA" />
+              <meta property="og:description" content={metaDescription} />
+            </Helmet>
+
+            {/* <h1 style={{ color: 'var(--color-primary)' }}>HAHAHA</h1> */}
+
+            <header style={styles.header}>
+              <h3 style={styles.heading}>
+                <Link to="/">lennythedev</Link>
+              </h3>
+              <Nav />
+              <div style={styles.theme}>
+                <ThemeSwitch />
+              </div>
+            </header>
+            <main style={styles.main}>{children}</main>
+            <footer style={styles.footer}>
+              <Social
+                link="https://twitter.com/lennythedev2"
+                name="Twitter"
+                icon={FaTwitter}
+              />
+              <Social
+                link="https://codesandbox.io/dashboard/recent"
+                name="Codesandbox"
+                icon={FiCodesandbox}
+              />
+              <Social link="https://dev.to/lenmorld" name="DEV" icon={FaDev} />
+              <Social
+                link="https://github.com/lenmorld"
+                name="Github"
+                icon={FaGithubAlt}
+              />
+            </footer>
+          </div>
+        )
+      }}
+    </ThemeContext.Consumer>
   )
 }

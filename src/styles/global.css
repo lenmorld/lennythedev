@@ -18,9 +18,7 @@ body {
     margin: 0 auto;
 }
 
-
 /* ---- from typography.js ---- */
-
 h1,
 h2,
 h3,
@@ -36,7 +34,7 @@ h6 {
     padding-right: 0;
     padding-top: 0;
     /* margin-bottom: 1.45rem; */
-    color: hsla(0, 0%, 0%, 0.9);
+    /* color: hsla(0, 0%, 0%, 0.9); */
     font-weight: 600;
     text-rendering: optimizeLegibility;
     line-height: 1.1;
@@ -71,7 +69,10 @@ h6 {
 a {
     text-shadow: none;
     text-decoration: none;
+    /* Light theme */
     color: #1d048d;
+    /* dark theme */
+    /* color: #BC9CB0; */
 }
 
 a:hover {
@@ -97,3 +98,27 @@ img {
 
 
 /** end of typography.js **/
+
+
+/**** theming ***/
+
+ .dark {
+    background-color: #2a2b2d;
+    color: white;
+    transition: all 0.6s ease;
+}
+
+.light {
+    background-color: white;
+    color: #393424;
+    transition: all 0.6s ease;
+} 
+
+.theme-switch {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+
+
