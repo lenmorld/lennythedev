@@ -1,6 +1,14 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap'); */
 
 @import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* set in HTML root on gatsby-ssr.js */
+/* :root {
+    --primary: #393424;
+    --main-accent: #1d048d;
+    --secondary-accent: #2eff00;
+} */
+
 html {
     font-size: 125%;
     line-height: 1.45;
@@ -79,19 +87,13 @@ a {
     text-shadow: none;
     text-decoration: none;
     /* Light theme */
-    color: #1d048d;
+    color: var(--color-primary);
     /* dark theme */
     /* color: #BC9CB0; */
 }
 
 a:hover {
-    color: #1ca086;
-}
-
-:root {
-    --primary: #393424;
-    --main-accent: #1d048d;
-    --secondary-accent: #2eff00;
+    color: var(--color-secondary);
 }
 
 img {
@@ -104,6 +106,5 @@ img {
     padding-right: 0;
     padding-top: 0;
 }
-
 
 /** end of typography.js **/
