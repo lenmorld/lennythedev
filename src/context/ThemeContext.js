@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { getInitialTheme, persistTheme } from '../theming/helper'
+import { persistTheme, setCssVarColors } from '../theming/helper'
 
 import COLORS from '../theming/colors'
 
@@ -25,20 +25,7 @@ export const ThemeProvider = ({ children }) => {
     // persist to localStorage
     persistTheme(newValue)
     // update styles
-    root.style.setProperty(
-      '--color-text',
-      newValue === 'light' ? COLORS.light.text : COLORS.dark.text,
-    )
-
-    root.style.setProperty(
-      '--color-background',
-      newValue === 'light' ? COLORS.light.background : COLORS.dark.background,
-    )
-
-    root.style.setProperty(
-      '--color-primary',
-      newValue === 'light' ? COLORS.light.primary : COLORS.dark.primary,
-    )
+    setCssVarColors(root, newValue, COLORS)
   }
 
   return (

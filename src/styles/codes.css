@@ -9,7 +9,9 @@
     /* shade of main purple
         https://maketintsandshades.com/#1d048d
     */
-    background: #e8e6f4; 
+    /* background: #e8e6f4;  */
+    background: var(--color-subtle-background); 
     color: inherit;
+    text-shadow: none;
 }
 
