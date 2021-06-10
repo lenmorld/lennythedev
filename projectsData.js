@@ -4,14 +4,11 @@ const projects = [
   {
     id: 'shoppy',
     name: 'Shoppy',
-    liveLink: 'https://vercel.com/lenmorld/theshop/',
-    githubLink: 'https://github.com/lenmorld/poutinify',
+    liveLink: 'https://theshop.vercel.app',
+    githubLink: 'https://github.com/lenmorld/theshop',
     imageLink:
-      'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1606081485/lennythedev/poutinify.png',
-    description: `Poutine, eh? This app shows the current top poutine places in Montreal on Yelp, with a Leaflet map 
-      and some Yelp data for each restaurant: average reviews, top review, photo and top review. 
-      Served by a Netlify lambda function that sends query to Yelp on page load, with some localStorage caching.
-      `,
+      'https://res.cloudinary.com/dvfhgkkpe/image/upload/v1623326136/lennythedev/shoppy2.png',
+    description: `E-commerce site built with Next.js and GraphCMS`,
     tags: ['react', 'node', 'serverless', 'netlify'],
   },
   {
