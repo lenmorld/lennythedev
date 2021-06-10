@@ -11,15 +11,22 @@ import Social from './social'
 const styles = {
   body: {},
   header: {
-    marginTop: `1.5rem`,
+    marginTop: `2rem`,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
   },
+  left: {
+    marginBottom: '1rem',
+  },
   heading: {
-    margin: '1rem 2rem 0 0',
+    margin: 0,
+  },
+  right: {
+    display: 'flex',
+    marginBottom: '1rem',
   },
   nav: {
     listStyle: 'none',
@@ -27,10 +34,11 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
-    margin: '1rem 0 0 0',
+    margin: 0,
+    padding: 0,
   },
-  theme: {
-    margin: '1rem 0 0 0',
+  themeSwitch: {
+    marginLeft: '1rem',
   },
   main: {
     // marginTop: '1.5rem',
@@ -107,12 +115,16 @@ export default function PageLayout({
       </Helmet>
 
       <header style={styles.header}>
-        <h3 style={styles.heading}>
-          <Link to="/">lennythedev</Link>
-        </h3>
-        <Nav />
-        <div style={styles.theme}>
-          <ThemeSwitch />
+        <div style={styles.left}>
+          <h3 style={styles.heading}>
+            <Link to="/">lennythedev</Link>
+          </h3>
+        </div>
+        <div style={styles.right}>
+          <Nav />
+          <div style={styles.themeSwitch}>
+            <ThemeSwitch />
+          </div>
         </div>
       </header>
       <main style={styles.main}>{children}</main>
