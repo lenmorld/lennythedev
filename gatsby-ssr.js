@@ -18,8 +18,13 @@ function setColorsByTheme() {
   const light = '🌞' // LIGHT
   const dark = '🌝' // DARK
 
-  // same for function, but we replace in place, since it's called, not assigned
-  // see functionPlaceholderSetCssVarColors
+  // same for function, we must assign a token and replace with Stringified imported function after
+  // NOTE that we cannot just replace in place, since when building there are
+  // optimizations that causes the imported function to be replaced with an anonymous function
+  // thus not callable by main function
+  // https://www.notion.so/lennythedev/L102-Light-dark-theme-0d94ba42c7d14a028e27024ddbed7c3e#0ff17517e94f4f1a8a9870aa7fd216e7
+
+  const functionPlaceholderSetCssVarColors = '✨'
 
   // alert("Hi!")
 
@@ -58,9 +63,7 @@ const MagicScriptTag = () => {
   const setColorsByThemeString = String(setColorsByTheme)
 
   const stringifiedCode = `
-        ${helpersString}
         ${setColorsByThemeString}
-        
         // call main function
         setColorsByTheme()
     `
@@ -72,7 +75,7 @@ const MagicScriptTag = () => {
     .replace("'🔲'", `'${THEME}'`)
     .replace("'🌞'", `'${LIGHT}'`)
     .replace("'🌝'", `'${DARK}'`)
-    .replace(/functionPlaceholderSetCssVarColors/g, 'setCssVarColors')
+    .replace("'✨'", helpersString) // replace function
 
   // wrap in IIFE
   const codeToRunOnClient = `(
