@@ -60,7 +60,7 @@ In short, ESLint for **code quality** and Prettier for **code formatting**
 Here's an example React repo using bare-bones Parcel and Babel.
 Focus on `src/Hello.jsx` with a lot of formatting errors, which we want to lint.
 
-- Github repo before fixes: [`react_eslint_prettier`](https://github.com/lenmorld/lennythedev_src/tree/react_eslint_prettier_1/react_eslint_prettier)
+- Github repo before fixes: [react eslint prettier](https://github.com/lenmorld/lennythedev_src/tree/react_eslint_prettier_1/react_eslint_prettier)
 
 > 📚 [Parcel](https://parceljs.org/) is a zero-config bundler as an alternative to Webpack. [Babel](https://babeljs.io/) compiles JSX and other new-gen JS to regular JS that browsers understand. 
 
@@ -376,7 +376,7 @@ We also have to add `prettier/react` at the end to override those rules.
 
 # Code
 
-- Github repo after fixes: [`react_eslint_prettier`](https://github.com/lenmorld/lennythedev_src/tree/master/react_eslint_prettier)
+- Github repo after fixes: [react eslint prettier](https://github.com/lenmorld/lennythedev_src/tree/master/react_eslint_prettier)
 
 # Conclusion
 
