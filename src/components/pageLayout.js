@@ -11,12 +11,17 @@ import Social from './social'
 const styles = {
   body: {},
   header: {
-    marginTop: `2rem`,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
+    // marginTop: `2rem`,
+    paddingTop: `2rem`,
+    position: 'sticky',
+    top: 0,
+    backgroundColor: 'var(--color-background)',
+    zIndex: '1', // prevent blog elements from going on top
   },
   left: {
     marginBottom: '1rem',
