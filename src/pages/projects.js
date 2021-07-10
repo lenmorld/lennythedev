@@ -13,7 +13,9 @@ const styles = {
     display: 'grid',
     columnGap: '4rem',
     rowGap: '1rem',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
+    // NOTE: make min lot less than phone viewport (300-400) so
+    // it won't overflow on phones
+    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
     // grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 
     // display: "flex",
@@ -101,6 +103,7 @@ const Project = ({
         display: 'flex',
         alignItems: 'center',
         marginBottom: '0.75rem',
+        flexWrap: 'wrap',
       }}
     >
       {tags.map((tag) => (
