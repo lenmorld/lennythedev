@@ -16,12 +16,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
-    // marginTop: `2rem`,
-    paddingTop: `2rem`,
-    position: 'sticky',
-    top: 0,
-    backgroundColor: 'var(--color-background)',
-    zIndex: '1', // prevent blog elements from going on top
+    // other styles in global.css header {}
   },
   left: {
     marginBottom: '1rem',
@@ -47,7 +42,7 @@ const styles = {
   },
   main: {
     // marginTop: '1.5rem',
-    minHeight: '75vh',
+    // minHeight: '75vh',
   },
   footer: {
     borderTop: '1px solid gray',
@@ -119,16 +114,20 @@ export default function PageLayout({
         <meta property="og:description" content={metaDescription} />
       </Helmet>
 
-      <header style={styles.header}>
-        <div style={styles.left}>
-          <h3 style={styles.heading}>
-            <Link to="/">lennythedev</Link>
-          </h3>
-        </div>
-        <div style={styles.right}>
-          <Nav />
-          <div style={styles.themeSwitch}>
-            <ThemeSwitch />
+      <header>
+        <div className="max-width-container">
+          <div style={styles.header}>
+            <div style={styles.left}>
+              <h3 style={styles.heading}>
+                <Link to="/">lennythedev</Link>
+              </h3>
+            </div>
+            <div style={styles.right}>
+              <Nav />
+              <div style={styles.themeSwitch}>
+                <ThemeSwitch />
+              </div>
+            </div>
           </div>
         </div>
       </header>
