@@ -4,7 +4,7 @@ date: "2020-11-10"
 description: How to configure ESLint and Prettier for React development on VSCode
 tags: ["eslint", "prettier", "react", "vscode", "tooling", "advanced"]
 path: /eslint_prettier_react_vscode
-date_updated: "2021-01-21"
+date_updated: "2021-07-16"
 ---
 
 ![VSCode ESLint code actions on save](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1605013884/lennythedev/vscode_eslint_prettier_fix_on_save_2.gif)
@@ -356,6 +356,10 @@ As explained [here](https://github.com/prettier/eslint-config-prettier#installat
 
 We also have to add `prettier/react` at the end to override those rules.
 
+### Update 06/2021: Use `prettier` instead of `prettier/react` or any `prettier/*`
+
+- Since `eslint-config-prettier` 8.0.0, all the `prettier/*` configs have been merged into `prettier`. [See the changelog for details](https://github.com/prettier/eslint-config-prettier/blob/main/CHANGELOG.md#version-800-2021-02-21)
+
 **`.eslintrc.js`**
 ```js
 {
@@ -366,7 +370,7 @@ We also have to add `prettier/react` at the end to override those rules.
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     // ...
-    "prettier/react", // <--- add this
+    "prettier", // <--- add this; `prettier/react` for eslint-config-prettier < 8.0.0
   ]
   // ...
 }
