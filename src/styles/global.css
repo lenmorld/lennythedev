@@ -29,14 +29,14 @@ body {
 /** theming **/
 body {
     /* background-color: #2a2b2d; */
-    background-color: var(--color-background);
+    background-color: var(--color-background, #ffffff);
     /* color: #393424; */
     color: var(--color-text);
     transition: background 0.6s ease;
 }
 
 header {
-    background-color: var(--color-background);
+    background-color: var(--color-background, #ffffff);
     transition: background 0.6s ease;
 
     position: sticky;
