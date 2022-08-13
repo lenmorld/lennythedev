@@ -159,7 +159,7 @@ A module variable is not tied to a component, which allows us to share the cache
 
 
 To illustrate this behavior, I added different counters inside the hook.
-To make the story short, while the ref ctrs maintained values for the specific component instance (1 or 2), only the **module counters** effectively maintained data between succedding calls to the two components (1 and 2).
+To make the story short, while the ref counters maintained values for the specific component instance (1 or 2), only the **module counters** effectively maintained data between succeeding calls to the two components (1 and 2).
 
 ![](res/2_multiple_components_sharing_hook_with_logs)
 
@@ -167,19 +167,9 @@ To make the story short, while the ref ctrs maintained values for the specific c
 
 [code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/2c)
 
-<<< TODO: provide examples here, even just links >>>>
-It definitely works also on other places outside of React component, like:
+If it works on module level, it should also work on any global variable or browser storage like:
 - window object
-- localStorage
-
-
----
--> separate it, don't use hook
-
--> put it outside? 
-    - JSON.stringify
-    - window
-
+- browser storages: localStorage, IndexedDB, etc
 
 ## III. Two components fetching the same API on component load
 
@@ -304,8 +294,7 @@ The nice thing with our cache now is that we can now use it for a lot of use cas
 - data fetches on event triggers, with any number of components
 - any combination of the two
 
-
-1. 2 components fetching same API on load and on every click
+1. multiple components fetching same API on load and on every click
 
     ![](res/6a.png)
 
@@ -313,7 +302,7 @@ The nice thing with our cache now is that we can now use it for a lot of use cas
 
     Here we can see the cache at work. If we didn't have it, the fetch will be called 8 times in total (2 on initial render, and 3*2=6 times clicked!)
 
-2. 2 components fetching different APIs on load and on every click
+2. multiple components fetching different APIs on load and on every click
 
     ![](res/6b.png)
 
@@ -322,3 +311,61 @@ The nice thing with our cache now is that we can now use it for a lot of use cas
     Here we can see true value of the cache! The /users API was called in total 17 times (2 on load, and 8+7=15 clicks) with 4 unique URLs being called multiple times between Components 1 and 2. 
     The amazing thing is that there are only 4 fetches in the network tab! 
     This is also reflected by the 4 items in our cache towards the end of our run. 
+
+## Persisting between reloads
+
+So far, these cache solutions are stored in memory, so it clears on page reload.
+You can use any client-side data storage to persist between reloads.
+Luckily, Zustand provides a [persist middleware](https://github.com/pmndrs/zustand/blob/main/docs/persisting-store-data.md) that makes this really simple.
+
+> We'll use `localStorage` here for simplicity, but you can use `sessionStorage`, `IndexedDB`, even `AsyncStorage`. See the persist middleware for details.
+
+[code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/7a)
+
+![](res/7a.gif)
+
+✨ Now, we can even use the cache after a reload! Isn't that wonderful?!
+
+> Note that I enabled "Preserve log" in the network tab to keep the fetch calls visible between reloads.
+
+## Redux
+
+You can definitely implement all of the above on Redux as well.
+Here's a really good article on [Redux caching with IndexedDB](https://www.twilio.com/blog/local-cache-react-redux)
+
+# Cache invalidation
+
+As we all know, [cache invalidation is a hard problem](https://martinfowler.com/bliki/TwoHardThings.html), 
+so this would really depend on your use case and the API you're calling.
+
+## Invalidating after a certain time
+
+As a contrived example, let's say you want to invalidate the cache after some time, e.g. could be the average duration when user updates their profile, so we have to refetch it.
+
+I'll only fetch `/users/1` for all clicks to see the cache behavior better.
+I'll also set the cache expiry to only 7 seconds for test, but you get the idea 😉
+
+[code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/8a)
+
+![](res/8a.gif)
+
+The cache is kept between the two components and even after reloads. Then every 7th second, the cache expires so we refetch.
+
+## Forcing cache clear
+
+Lastly, we can also clear the cache on trigger, in special cases.
+
+[code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/8b)
+
+![](res/8b.gif)
+
+Here, you can see that the cache is kept until we clear it on fetch.
+
+🥳 Awesome!
+
+
+# Summary
+
+Hopefully this helps you decide and implement an API cache next time you identify these cases. These patterns can really improve your app by reducing the fetch calls between components, whether the fetch is done on load and/or on an event.
+
+"Cache" you in the next one. LOL. I'll show myself out 🤣
