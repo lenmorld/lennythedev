@@ -61,7 +61,7 @@ const Component1 = () => {
 export default Component1;
 ```
 
-![](./res/react_component_fetch_no_cache_1a.gif)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_no_cache_1a.gif)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/1a)
 
@@ -74,7 +74,7 @@ If found, we use the cached value.
 Otherwise, we fetch the URL and we save the results for later use.
 The cache will look something like this.
 
-```
+```js
 {
     `https://hn.algolia.com/api/v1/search?hitsPerPage=5&query=react`: [{…}, {…}, {…}, {…}, {…}]
     `https://hn.algolia.com/api/v1/search?hitsPerPage=5&query=angular`: [{…}, {…}, {…}, {…}, {…}]
@@ -108,9 +108,9 @@ const Component1 = () => {
 ...
 ```
 
-![](./res/react_component_fetch_with_cache_1b.gif)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_with_cache_1b.gif)
 
-[code](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/1b)
+[see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/1b)
 
 A `ref` works well here, because not only it can hold mutable values that persists throughout renders, it will also be cleaned up on unmount (compared to a module variable). 
 
@@ -235,7 +235,7 @@ const useFetch = (searchUrl, uniqueId) => {
 }
 ```
 
-![](res/react_multiple_components_sharing_cache_ref_2a.png)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_ref_2a.png)
 
 **nope, ref doesn't work**, since the `ref` is tied to a component "instance". 
 Each instance keeps its own cache. 🤦‍♂️
@@ -278,7 +278,7 @@ const useFetch = (searchUrl, uniqueId) => {
 }
 ```
 
-![](res/react_multiple_components_sharing_cache_module_var_2b.gif)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_2b.gif)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/2b)
 
@@ -287,7 +287,7 @@ const useFetch = (searchUrl, uniqueId) => {
 To illustrate this behavior further, I added different counters inside the hook.
 While the ref counters maintained values for the specific component instance (1 or 2), only the **module counters** effectively maintained data between succeeding calls to the two components (1 and 2).
 
-![](res/react_multiple_components_sharing_cache_module_var_with_logs_2c.png)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_with_logs_2c.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/2c)
 
@@ -303,6 +303,16 @@ Think of a header component that has to fetch user and display username and avat
 
 We'll change up the components markup but the logic is more or less the same.
 This time we'll fetch a user from [fakestoreapi](https://fakestoreapi.com).
+
+The cache will look something like this
+
+```js
+{
+    "https://fakestoreapi.com/users/1": {...},
+    "https://fakestoreapi.com/users/2": {...},
+    "https://fakestoreapi.com/users/3": {...}
+}
+```
 
 ```jsx
 // useFetch.js hook didn't change much, still using module scope cache
@@ -321,7 +331,7 @@ const Component1 = () => {
 };
 ```
 
-![](res/react_multiple_components_fetch_on_load_sharing_cache_module_3a.png)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_module_3a.png)
 
 [see code in github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/3a)
 
@@ -376,7 +386,7 @@ const useFetch = (searchUrl, uniqueId) => {
 ```
 
 
-![](res/react_multiple_components_fetch_on_load_sharing_cache_module_flag_3b.png)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_module_flag_3b.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/3b)
 
@@ -420,7 +430,7 @@ const useFetch = (searchUrl, uniqueId) => {
 // ...
 ```
 
-![](res/react_multiple_components_fetch_on_load_sharing_cache_state_flag_3c.png)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_state_flag_3c.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/3c)
 
@@ -465,9 +475,9 @@ export default function App() {
 const Component = ({ user }) => // render user
 ```
 
-![](res/react_multiple_components_fetch_on_load_sharing_cache_move_state_up_4a.png)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_move_state_up_4a.png)
 
-[code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/4a)
+[see code in Github](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/4a)
 
 😏 No need for `isFetching` flag since fetching is done by one component.
 
@@ -564,9 +574,9 @@ const Component1 = () => {
 };
 ```
 
-![](res/react_multiple_components_fetch_on_load_sharing_cache_zustand_5a.png)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_zustand_5a.png)
 
-[code](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/5a)
+[see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/5a)
 
 
 Awesome! 🎉 
@@ -614,7 +624,7 @@ The nice thing with our cache now is that we can now use it for a lot of use cas
     }
     ```
 
-    ![](res/react_multiple_components_fetch_same_api_on_load_and_every_click_cache_6a.png)
+    ![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_same_api_on_load_and_every_click_cache_6a.png)
 
     [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/6a)
 
@@ -653,7 +663,7 @@ The nice thing with our cache now is that we can now use it for a lot of use cas
     export default Component1;
     ```
 
-    ![](res/react_multiple_components_fetch_different_apis_on_load_and_every_click_cache_6b.png)
+    ![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_different_apis_on_load_and_every_click_cache_6b.png)
 
     [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/6b)
 
@@ -693,7 +703,7 @@ const useStore = create(
 );
 ```
 
-![](res/react_component_fetch_cache_local_storage_7a.gif)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_local_storage_7a.gif)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/7a)
 
@@ -769,7 +779,7 @@ const useStore = create(
       // ...
 ```
 
-![](res/react_component_fetch_cache_invalidation_expiry_8a.gif)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_invalidation_expiry_8a.gif)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/8a)
 
@@ -782,7 +792,7 @@ Lastly, we can also clear the cache based on some logic or user input.
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/8b)
 
-![](res/react_component_fetch_cache_invalidation_force_clear_8b.gif)
+![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_invalidation_force_clear_8b.gif)
 
 Here, you can see that the cache is kept until we clear it on fetch.
 
