@@ -1,10 +1,10 @@
 ---
 title: Caching API calls in React
 published: false
-date: "2022-08-13"
+date: "2022-08-19"
 path: "/blog/react-caching-api-calls"
-description: Exploring on different use cases and solutions when caching API calls in React
-tags: ["react", "caching", "zustand", "intermediate"]
+description: Exploring different use cases and solutions to cache API calls in React
+tags: ["react", "cache", "zustand", "fetch", "intermediate"]
 ---
 
 # Intro
@@ -498,11 +498,75 @@ npm install zustand
 
 Since our states will be manage by Zustand, we'll replace our `useFetch` hook with a `store` that will hold all of our state and updater functions.
 
-<<<<<< IN PROGRESS >>>>>>
+```js
+// useStore.js
+import create from "zustand";
 
-![](res/5a.png)
+const useStore = create((set, get) => ({
+  data: null,
+  cache: {},
+  isFetching: false,
+  fetchData: async (url, uniqueId) => {
+    const { isFetching, cache } = get();
 
-[code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/5a)
+    console.log(`${uniqueId} fetch function runs`);
+
+    const cachedResults = cache[url]; // get from cache
+
+    if (isFetching) {
+      console.log("⏳ Fetch in progress...");
+    } else if (cachedResults) {
+      console.log("✅ Using cached data");
+      set({ data: cachedResults });
+    } else {
+      console.log("🌏 Fetching...");
+      set({ isFetching: true });
+
+      const raw = await fetch(url);
+      const result = await raw.json();
+      set({ isFetching: false });
+
+      console.log("📦 Data arrives!", result);
+      // save to cache
+      set({
+        cache: {
+          ...cache,
+          [url]: result,
+        },
+      });
+
+      // components subscribed to data will re-render
+      set({ data: result });
+      set({ isFetching: false });
+    }
+  },
+}));
+```
+
+
+```jsx
+// Component1, Component2
+import dataStore from "./useStore";
+
+const FETCH_URL = "https://fakestoreapi.com/users/1";
+
+const Component1 = () => {
+  // get data from store, also subscribing to its updates
+  const user = dataStore((state) => state.data);
+  // get fetcher from store
+  const fetchData = dataStore((state) => state.fetchData);
+
+  useEffect(() => {
+    fetchData(FETCH_URL, "Component<1 or 2>");
+  }, [fetchData]);
+
+  // render user
+};
+```
+
+![](res/react_multiple_components_fetch_on_load_sharing_cache_zustand_5a.png)
+
+[code](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/5a)
 
 
 Awesome! 🎉 
@@ -518,37 +582,120 @@ So the cache is not even used (you can see that our `✅ Using cached data` log 
 The nice thing with our cache now is that we can now use it for a lot of use cases:
 - data fetches on load, with any number of components
 - data fetches on event triggers, with any number of components
-- any combination of the two
+- combination of the two
+- any other use case that might fetch the same URL within the app
 
 1. multiple components fetching same API on load and on every click
 
-    ![](res/6a.png)
+    ```jsx
+    // Component1, Component2
+    const Component1 = () => {
+      const [fetchCtr, setFetchCtr] = useState(1);
 
-    [code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/6a)
+      const user = dataStore((state) => state.data);
+      const fetchData = dataStore((state) => state.fetchData);
 
-    Here we can see the cache at work. If we didn't have it, the fetch will be called 8 times in total (2 on initial render, and 3*2=6 times clicked!)
+      // on load
+      useEffect(() => {
+        fetchData(FETCH_URL, "Component<1 or 2>");
+      }, [fetchData]);
+
+      // every click
+      const fetchUser = () => {
+        fetchData(FETCH_URL, "Component<1 or 2>");
+        setFetchCtr((prev) => prev + 1);
+      };
+      // ...
+      return (
+          {/* ... */}
+          <button onClick={fetchUser}>Fetch!</button>
+          {/* ... */}
+      );
+    }
+    ```
+
+    ![](res/react_multiple_components_fetch_same_api_on_load_and_every_click_cache_6a.png)
+
+    [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/6a)
+
+    Here we can see the cache at work. If we didn't have it, the fetch will be called 8 times in total! (2 on initial render, and 3*2=6 times clicked)
 
 2. multiple components fetching different APIs on load and on every click
 
-    ![](res/6b.png)
+    ```jsx
+    // Component1, Component2
+    const Component1 = () => {
+      const [fetchCtr, setFetchCtr] = useState(1);
 
-    [code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/6b)
+      const user = dataStore((state) => state.data);
+      const fetchData = dataStore((state) => state.fetchData);
 
-    Here we can see true value of the cache! The /users API was called in total 17 times (2 on load, and 8+7=15 clicks) with 4 unique URLs being called multiple times between Components 1 and 2. 
+      // on load
+      useEffect(() => {
+        fetchData("https://fakestoreapi.com/users/1", "Component<1 or 2>");
+      }, [fetchData]);
+
+      // every click, fetch user from 1-3
+      const fetchUser = () => {
+        const nextUser = Math.ceil(fetchCtr / 2);
+        fetchData(`${FETCH_URL}/${nextUser}`, "Component<1 or 2>");
+        // rotate
+        setFetchCtr((prev) => prev + 1);
+      };
+      // ...
+      return (
+          {/* ... */}
+          <button onClick={fetchUser}>Fetch!</button>
+          {/* ... */}
+      );
+    };
+
+    export default Component1;
+    ```
+
+    ![](res/react_multiple_components_fetch_different_apis_on_load_and_every_click_cache_6b.png)
+
+    [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/6b)
+
+    Here we can see true value of the cache. The /users API was called in total 17 times (2 on load, and 8+7=15 clicks) with 4 unique URLs being called multiple times between Components 1 and 2. 
+
     The amazing thing is that there are only 4 fetches in the network tab! 
     This is also reflected by the 4 items in our cache towards the end of our run. 
 
-## Persisting between reloads
+## Persisting the cache on browser storage 💾
 
 So far, these cache solutions are stored in memory, so it clears on page reload.
-You can use any client-side data storage to persist between reloads.
+We can use any client-side data storage to persist between reloads.
 Luckily, Zustand provides a [persist middleware](https://github.com/pmndrs/zustand/blob/main/docs/persisting-store-data.md) that makes this really simple.
 
 > We'll use `localStorage` here for simplicity, but you can use `sessionStorage`, `IndexedDB`, even `AsyncStorage`. See the persist middleware for details.
 
-[code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/7a)
+Just wrap the entire store function in a `persist`
 
-![](res/7a.gif)
+```js
+// useStore.js
+
+import create from "zustand";
+import { persist } from "zustand/middleware";
+
+const useStore = create(
+  persist(
+    (set, get) => ({
+      data: null,
+      cache: {},
+      // entire store...
+    }),
+    {
+      name: "cache-storage", // name of item in the storage (must be unique)
+      getStorage: () => localStorage, // (optional) by default the 'localStorage' is used
+    }
+  )
+);
+```
+
+![](res/react_component_fetch_cache_local_storage_7a.gif)
+
+[see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/7a)
 
 ✨ Now, we can even use the cache after a reload! Isn't that wonderful?!
 
@@ -561,37 +708,88 @@ Here's a really good article on [Redux caching with IndexedDB](https://www.twili
 
 # Cache invalidation
 
-As we all know, [cache invalidation is a hard problem](https://martinfowler.com/bliki/TwoHardThings.html), 
-so this would really depend on your use case and the API you're calling.
+As we all know, [cache invalidation is a hard problem](https://martinfowler.com/bliki/TwoHardThings.html) 😵, 
+but here are some possible solutions.
 
-## Invalidating after a certain time
+## Invalidating after a certain time ⏱
 
-As a contrived example, let's say you want to invalidate the cache after some time, e.g. could be the average duration when user updates their profile, so we have to refetch it.
+Let's say you want to invalidate the cache after some time, e.g. on average, maybe a user updates their profile once a week, so we have to refetch it every 7 days.
 
-I'll only fetch `/users/1` for all clicks to see the cache behavior better.
-I'll also set the cache expiry to only 7 seconds for test, but you get the idea 😉
+For the experiment's sake, we'll set the cache expiry to only 7 seconds, 
+and only fetch `/users/1` to see the results.
+We'll also tweak our cache to use a full object instead, that contains the data and the timestamp when the cache was created.
 
-[code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/8a)
+```js
+{
+ url1: {
+   data: {...},
+   createdAt: timeStamp1
+ },
+ url2: {
+   data: {...},
+   createdAt: timeStamp2
+ },
+}
+```
 
-![](res/8a.gif)
+```js
+// useStore.js
+import create from "zustand";
+import { persist } from "zustand/middleware";
 
-The cache is kept between the two components and even after reloads. Then every 7th second, the cache expires so we refetch.
+const CACHE_EXPIRY_MS = 7000 // 7s
 
-## Forcing cache clear
+const isCacheExpired = (cacheItem) => {
+  const cacheCreatedAt = cacheItem?.createdAt;
+  const currentTime = Date.now()
+  return (currentTime - cacheCreatedAt > CACHE_EXPIRY_MS)
+}
 
-Lastly, we can also clear the cache on trigger, in special cases.
+const useStore = create(
+  // ...
+  fetchData: async (url, uniqueId) => {
+    // ...
+    if (isFetching) { /* ... */ } 
+    else if (cachedItem && !isCacheExpired(cachedItem)) { // only use cache if not expired yet
+      console.log("✅ Using cached data");
+      set({ data: cachedItem?.data });
+    } else {
+      // ...fetch...
+      const timestamp = Date.now();
 
-[code](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/8b)
+      set({
+        cache: {
+          ...cache,
+          [url]: {
+            createdAt: timestamp, // add timestamp to cache
+            data: result,
+          },
+        },
+      });
+      // ...
+```
 
-![](res/8b.gif)
+![](res/react_component_fetch_cache_invalidation_expiry_8a.gif)
+
+[see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/8a)
+
+
+Nice! The cache is kept between the two components and even after reloads. Then every 7th second, the cache expires so we refetch.
+
+## Invalidating on command 🔨
+
+Lastly, we can also clear the cache based on some logic or user input.
+
+[see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/8b)
+
+![](res/react_component_fetch_cache_invalidation_force_clear_8b.gif)
 
 Here, you can see that the cache is kept until we clear it on fetch.
 
 🥳 Awesome!
 
-
 # Summary
 
-Hopefully this helps you decide and implement an API cache next time you identify these cases. These patterns can really improve your app by reducing the fetch calls between components, whether the fetch is done on load and/or on an event.
+Caching can really improve your app by reducing the fetch calls between components, regardless of when the fetch is done. Hopefully these various techniques can help you decide and implement a cache next time you identify multiple calls being made to the same set of URLs within your app. 
 
-"Cache" you in the next one. LOL. I'll show myself out 🤣
+I'll *cache* you in the next one. I'll show myself out 🤣
