@@ -2,9 +2,10 @@
 title: Caching API calls in React
 published: false
 date: "2022-08-19"
-path: "/blog/react-caching-api-calls"
-description: Exploring different use cases and solutions to cache API calls in React
+path: "/blog/react-caching-api-responses"
+description: Exploring different use cases and solutions to cache responses on API fetch in React
 tags: ["react", "cache", "zustand", "fetch", "intermediate"]
+date_updated: "2022-08-21"
 ---
 
 # Intro
