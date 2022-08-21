@@ -4,32 +4,30 @@ published: false
 date: "2022-08-19"
 path: "/blog/react-caching-api-responses"
 description: Exploring different use cases and solutions to cache responses on API fetch in React
-tags: ["react", "cache", "zustand", "fetch", "intermediate"]
+tags: ["react", "cache", "zustand", "fetch", "advanced", "intermediate"]
 date_updated: "2022-08-21"
 ---
 
 # Intro
 
-Caching in your webapp can reduce network calls, save local resources, and thus improve the overall performance and user experience. 
+Caching API calls in your webapp can reduce network calls, reduce backend and database load, and thus improve the overall performance and user experience. 
 
-One opportunity to cache is when your app fetches data from the same API multiple times. 
-Instead of doing the same call again and again, we can cache the payload per unique URL and save a network call.
-This becomes beneficial for larger payloads or slower APIs.
+There can be cases when your app might fetch data from a same set of API endpoints multiple times. Instead of doing a call twice, you can cache the payload per unique URL and save a trip to the backend. This becomes beneficial for larger payloads or slower APIs.
 
 We'll explore different scenarios and possible caching techniques and tools.
 Let's get into it!
 
 # Scenarios
 
-To cover our async bases, I'd like to differentiate the cases when the API is called. The fetch can be triggered by a "user event" like a button click or hitting a key; or triggered on component load (and updates) in React.
+To cover our async bases, I'd like to differentiate the cases when the API is called. The fetch can be triggered by a "user event" like a button click or hitting a key; or triggered the first time the component loads.
 
-Another factor is where the cache lives and how is it managed. The cache maybe only needed by one component instance or shared by multiple components.
+Another factor is where the cache lives and how is it managed. The cache maybe only needed by one component instance, or shared by multiple components.
 
 You'll see shortly why I made these distinctions, but just keep that in mind.
 
-# I. One component fetching the same API on event trigger
+# I. One component fetching the same API on a user event
 
-> If you have a component fetching same URL on user event
+This is for when you have once component that may fetch the same URL multiple times, on a user event like a button click, form submit, etc
 
 Suppose we have a simple search UI that calls [Hacker News Algolia API](https://hn.algolia.com/api) for a given search term. It's always the same results for the same search term, e.g. `/api/v1/search?hitsPerPage=5&query=react`, so we can cache per URL.
 
@@ -77,13 +75,14 @@ export default Component1;
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/1a)
 
-### Solution: add a cache using `ref`
+### Solution: add a cache using `ref` ✅
 
-We can add a cache to save the results per URL. 
-This cache is initially empty, then every unique query will populate it.
-When search is invoked, we check the cache first if the URL is there. 
-If found, we use the cached value. 
-Otherwise, we fetch the URL and we save the results for later use.
+Add a cache to save the results per URL. 
+- This cache is initially empty, then every unique query will populate it.
+- When search is invoked, we check the cache first if the URL is there. 
+- If found, we use the cached value. 
+- Otherwise, we fetch the URL and we save the results for later use.
+
 The cache will look something like this.
 
 ```js
@@ -133,21 +132,18 @@ const Component1 = () => {
 >
 </iframe>
 
-
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/1b)
 
 A `ref` works well here, because not only it can hold mutable values that persists throughout renders, it will also be cleaned up on unmount (compared to a module variable). 
 
-# II. Two components fetching the same API on event trigger
-
-> If you have two or more components fetching same URL on user event
+# II. Two components fetching the same API on a user event
 
 Can we extend the solution above to two components, with a shared hook that maintains the cache in a `ref`?
 
 Let's say we have `<Component1 /><Component1 />`s next to each other,
 or `<Component1 /><Component2 />` (with Component2 fetching same URL as Component1).
 
-> Remember that two `<Component1>`s on the same render tree are still different instances, thus maintain their own execution scope (state, props). So they are still different components.
+> Remember that two `<Component1>`s on the same render tree are still different instances, so they maintain their own execution scope (state, props).
 
 ### `useFetch` hook for fetch and cache logic
 
@@ -222,7 +218,7 @@ export default function App() {
 
 **Notes:**
 - Pass a componentId (e.g. "Component1") to help debug the cache usage
-- Trick to search same term to use cache. Without it, hook won't be triggered because the search term didn't change 😅
+- I added a trick to clear search term even if it didn't change, so we can still observe the cache
 
 ### Cache in a ref ❌
 
@@ -261,7 +257,7 @@ const useFetch = (searchUrl, uniqueId) => {
 
 ![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_ref_2a.png)
 
-**nope, ref doesn't work**, since the `ref` is tied to a component "instance". 
+**nope, ref doesn't work**, since the `ref` is tied to a component instance. 
 Each instance keeps its own cache. 🤦‍♂️
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/2a)
@@ -269,7 +265,6 @@ Each instance keeps its own cache. 🤦‍♂️
 ### Solution: Use a module level variable ✅
 
 A module variable is not tied to a component, which allows us to share the cache for both Component1 and Component2 to read and update.
-
 
 ```jsx
 const cache = {} // module level cache
@@ -319,28 +314,25 @@ const useFetch = (searchUrl, uniqueId) => {
 
 😎 Cool that works!
 
-To illustrate this behavior further, I added different counters inside the hook.
+To illustrate this behavior further, I have a version with counters inside the hook.
 While the ref counters maintained values for the specific component instance (1 or 2), only the **module counters** effectively maintained data between succeeding calls to the two components (1 and 2).
 
 ![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_with_logs_2c.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/2c)
 
-If it works on module level, it should also work on any global variable or browser storage like:
+Since it works on module level, it should also work on any global variable or browser storage like:
 - window object
 - browser storage API: localStorage, sessionStorage, IndexedDB, etc
 
 # III. Two components fetching the same API on component load
 
-> If you have two or more components fetching same URL on component load
+Think of an SPA that has a header and a page body under the same React tree. 
+The header component has to display username and avatar, and the page body has a profile component that has to display user details.
 
-Think of a header component that has to fetch user and display username and avatar, and a profile component in the page body that also has to fetch user and display all user info.
+> We'll change up the components markup but the logic is more or less the same. This time we'll fetch a user from [fakestoreapi](https://fakestoreapi.com).
 
-We'll change up the components markup but the logic is more or less the same.
-This time we'll fetch a user from [fakestoreapi](https://fakestoreapi.com).
-
-The cache will look something like this
-
+The cache will look something like this:
 ```js
 {
     "https://fakestoreapi.com/users/1": {...},
@@ -420,7 +412,6 @@ const useFetch = (searchUrl, uniqueId) => {
 // ...
 ```
 
-
 ![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_module_flag_3b.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/3b)
@@ -475,7 +466,7 @@ The reason is, like a ref, state is tied to component, and thus not sharable bet
 
 We need a "component aware" way but also "global" 🤔
 
-#### Move state up ✅
+#### Solution 1: Move state up ✅
 
 > "the simplest solution is almost always the best." - Occam's Razor
 
@@ -522,7 +513,7 @@ If these components are way down the tree, or if there's a lot of them, we can e
 We can even get away without a `cache` in simple use cases, like here when we only need to fetch once on load.
 If you also need to re-fetch again on a user event (like in I and II above), then a `cache` still makes sense.
 
-#### Use a state management library ✅
+#### Solution 2: Use a state management library ✅
 
 Now in more complex scenarios when **you can't move state up** because of:
 - refactoring costs
@@ -541,7 +532,7 @@ nor refactor your code to fit a framework.
 npm install zustand
 ```
 
-Since our states will be manage by Zustand, we'll replace our `useFetch` hook with a `store` that will hold all of our state and updater functions.
+Since our states will be manage by Zustand, we can replace our `useFetch` hook with a `store` that will hold all of our state and updater functions.
 
 ```js
 // useStore.js
@@ -588,11 +579,9 @@ const useStore = create((set, get) => ({
 }));
 ```
 
-
 ```jsx
 // Component1, Component2
 import dataStore from "./useStore";
-
 const FETCH_URL = "https://fakestoreapi.com/users/1";
 
 const Component1 = () => {
@@ -604,7 +593,6 @@ const Component1 = () => {
   useEffect(() => {
     fetchData(FETCH_URL, "Component<1 or 2>");
   }, [fetchData]);
-
   // render user
 };
 ```
@@ -764,8 +752,7 @@ Here's a really good article on [Redux caching with IndexedDB](https://www.twili
 
 # Cache invalidation
 
-As we all know, [cache invalidation is a hard problem](https://martinfowler.com/bliki/TwoHardThings.html) 😵, 
-but here are some possible solutions.
+As we all know, [cache invalidation is a hard problem](https://martinfowler.com/bliki/TwoHardThings.html) 😵, but here are some possible solutions.
 
 ## Invalidating after a certain time ⏱
 
@@ -840,7 +827,6 @@ const useStore = create(
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/8a)
 
-
 Nice! The cache is kept between the two components and even after reloads. Then every 7th second, the cache expires so we refetch.
 
 ## Invalidating on command 🔨
@@ -862,13 +848,11 @@ Lastly, we can also clear the cache based on some logic or user input.
 >
 </iframe>
 
-
-Here, you can see that the cache is kept until we clear it on fetch.
-
+Here, you can see that the cache is kept until we optionally clear it on fetch.
 🥳 Awesome!
 
 # Summary
 
 Caching can really improve your app by reducing the fetch calls between components, regardless of when the fetch is done. Hopefully these various techniques can help you decide and implement a cache next time you identify multiple calls being made to the same set of URLs within your app. 
 
-I'll *cache* you in the next one. I'll show myself out 🤣
+I'll *cache* you in the next one. Lol, I'll show myself out 🤣
