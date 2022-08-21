@@ -61,7 +61,18 @@ const Component1 = () => {
 export default Component1;
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_no_cache_1a.gif)
+<!-- FIXME: replace with MDX or custom markdown (![](video_url)) -->
+<iframe 
+    class="iframe-video"
+    width="100%"
+    height="400"
+    frameBorder="0"
+    src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660992291/lennythedev/react_caching_api_calls/react_component_fetch_no_cache_1a.mp4"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen
+>
+</iframe>
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/1a)
 
@@ -108,7 +119,19 @@ const Component1 = () => {
 ...
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_with_cache_1b.gif)
+<!-- FIXME: replace with MDX or custom markdown (![](video_url)) -->
+<iframe 
+    class="iframe-video"
+    width="100%"
+    height="400"
+    frameBorder="0"
+    src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_with_cache_1b.mp4"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen
+>
+</iframe>
+
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/1b)
 
@@ -278,7 +301,18 @@ const useFetch = (searchUrl, uniqueId) => {
 }
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_2b.gif)
+<!-- FIXME: replace with MDX or custom markdown (![](video_url)) -->
+<iframe 
+    class="iframe-video"
+    width="100%"
+    height="400"
+    frameBorder="0"
+    src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_2b.mp4"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen
+>
+</iframe>
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/2b)
 
@@ -703,7 +737,18 @@ const useStore = create(
 );
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_local_storage_7a.gif)
+<!-- FIXME: replace with MDX or custom markdown (![](video_url)) -->
+<iframe 
+    class="iframe-video"
+    width="100%"
+    height="400"
+    frameBorder="0"
+    src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_local_storage_7a.mp4"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen
+>
+</iframe>
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/7a)
 
@@ -779,7 +824,18 @@ const useStore = create(
       // ...
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_invalidation_expiry_8a.gif)
+<!-- FIXME: replace with MDX or custom markdown (![](video_url)) -->
+<iframe 
+    class="iframe-video"
+    width="100%"
+    height="400"
+    frameBorder="0"
+    src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_invalidation_expiry_8a.mp4"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen
+>
+</iframe>
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/8a)
 
@@ -792,7 +848,19 @@ Lastly, we can also clear the cache based on some logic or user input.
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/8b)
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_invalidation_force_clear_8b.gif)
+<!-- FIXME: replace with MDX or custom markdown (![](video_url)) -->
+<iframe 
+    class="iframe-video"
+    width="100%"
+    height="400"
+    frameBorder="0"
+    src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_cache_invalidation_force_clear_8b.mp4"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowFullScreen
+>
+</iframe>
+
 
 Here, you can see that the cache is kept until we clear it on fetch.
 
