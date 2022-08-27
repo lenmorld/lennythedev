@@ -67,6 +67,7 @@ export default Component1;
     height="400"
     frameBorder="0"
     src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660992291/lennythedev/react_caching_api_calls/react_component_fetch_no_cache_1a.mp4"
+    title="React component fetch no cache"
     webkitallowfullscreen="true"
     mozallowfullscreen="true"
     allowFullScreen
@@ -126,6 +127,7 @@ const Component1 = () => {
     height="400"
     frameBorder="0"
     src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660955048/lennythedev/react_caching_api_calls/react_component_fetch_with_cache_1b.mp4"
+    title="React component fetch with cache using ref"
     webkitallowfullscreen="true"
     mozallowfullscreen="true"
     allowFullScreen
@@ -255,7 +257,7 @@ const useFetch = (searchUrl, uniqueId) => {
 }
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_ref_2a.png)
+![React multiple components cache ref not working](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_ref_2a.png)
 
 **nope, ref doesn't work**, since the `ref` is tied to a component instance. 
 Each instance keeps its own cache. 🤦‍♂️
@@ -296,19 +298,7 @@ const useFetch = (searchUrl, uniqueId) => {
     return [data]
 }
 ```
-
-<!-- FIXME: replace with MDX or custom markdown (![](video_url)) -->
-<iframe 
-    class="iframe-video"
-    width="100%"
-    height="400"
-    frameBorder="0"
-    src="https://res.cloudinary.com/dvfhgkkpe/video/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_2b.mp4"
-    webkitallowfullscreen="true"
-    mozallowfullscreen="true"
-    allowFullScreen
->
-</iframe>
+![React multiple components sharing cache module var working](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_2b.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/2b)
 
@@ -317,7 +307,7 @@ const useFetch = (searchUrl, uniqueId) => {
 To illustrate this behavior further, I have a version with counters inside the hook.
 While the ref counters maintained values for the specific component instance (1 or 2), only the **module counters** effectively maintained data between succeeding calls to the two components (1 and 2).
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_with_logs_2c.png)
+![React multiple components sharing cache module var working with logs](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_sharing_cache_module_var_with_logs_2c.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/2c)
 
@@ -358,7 +348,7 @@ const Component1 = () => {
 };
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_module_3a.png)
+![React multiple components fetch on load sharing cache not working](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_module_3a.png)
 
 [see code in github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/3a)
 
@@ -412,7 +402,7 @@ const useFetch = (searchUrl, uniqueId) => {
 // ...
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_module_flag_3b.png)
+![React multiple components fetch on load sharing cache module var not working](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_module_flag_3b.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/3b)
 
@@ -456,7 +446,7 @@ const useFetch = (searchUrl, uniqueId) => {
 // ...
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_state_flag_3c.png)
+![React multiple components fetch on load sharing cache state var not working](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_state_flag_3c.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/tree/master/react_cache_api_calls/3c)
 
@@ -501,7 +491,7 @@ export default function App() {
 const Component = ({ user }) => // render user
 ```
 
-![](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_move_state_up_4a.png)
+![React multiple components fetch on load sharing caching move state up working](https://res.cloudinary.com/dvfhgkkpe/image/upload/v1660955048/lennythedev/react_caching_api_calls/react_multiple_components_fetch_on_load_sharing_cache_move_state_up_4a.png)
 
 [see code in Github](https://github.com/lenmorld/lennythedev_src/react_cache_api_calls/4a)
 
