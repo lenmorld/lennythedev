@@ -9,14 +9,6 @@ import Nav from './nav'
 
 const styles = {
   body: {},
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    // other styles in global.css header {}
-  },
   left: {
     marginBottom: '1rem',
   },

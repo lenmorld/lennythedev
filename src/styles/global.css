@@ -52,6 +52,10 @@ header {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+
+    padding-top: 2rem;
+    margin: 0 auto;
+    padding-bottom: 1rem;
 }
 
 main {
