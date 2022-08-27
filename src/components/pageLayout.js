@@ -4,9 +4,8 @@ import { Helmet } from 'react-helmet'
 
 import { FaTwitter, FaDev, FaGithubAlt } from 'react-icons/fa'
 import { FiCodesandbox } from 'react-icons/fi'
-
-import ThemeSwitch from './themeSwitch'
 import Social from './social'
+import Nav from './nav'
 
 const styles = {
   body: {},
@@ -28,18 +27,6 @@ const styles = {
     display: 'flex',
     marginBottom: '1rem',
   },
-  nav: {
-    listStyle: 'none',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    margin: 0,
-    padding: 0,
-  },
-  themeSwitch: {
-    marginLeft: '1rem',
-  },
   main: {
     // marginTop: '1.5rem',
     // minHeight: '75vh',
@@ -53,41 +40,6 @@ const styles = {
     flexWrap: 'wrap',
     alignItems: 'center',
   },
-}
-
-const pages = [
-  { name: 'Home', path: '/' },
-  { name: 'Blog', path: '/blog' },
-  { name: 'Projects', path: '/projects' },
-  // { name: 'Workshops', path: '/workshops' },
-  { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' },
-]
-
-const ListLink = ({ to, style, children }) => {
-  return (
-    <li
-      style={{
-        marginRight: `0.75rem`,
-        fontSize: '1rem',
-        ...style,
-      }}
-    >
-      <Link to={to}>{children}</Link>
-    </li>
-  )
-}
-
-const Nav = () => {
-  return (
-    <ul style={styles.nav}>
-      {pages.map((page) => (
-        <ListLink key={page.name} to={page.path}>
-          {page.name}
-        </ListLink>
-      ))}
-    </ul>
-  )
 }
 
 export default function PageLayout({
@@ -115,20 +67,13 @@ export default function PageLayout({
       </Helmet>
 
       <header>
-        <div className="max-width-container">
-          <div style={styles.header}>
-            <div style={styles.left}>
-              <h3 style={styles.heading}>
-                <Link to="/">lennythedev</Link>
-              </h3>
-            </div>
-            <div style={styles.right}>
-              <Nav />
-              <div style={styles.themeSwitch}>
-                <ThemeSwitch />
-              </div>
-            </div>
-          </div>
+        <div className="left" style={styles.left}>
+          <h3 style={styles.heading}>
+            <Link to="/">lennythedev</Link>
+          </h3>
+        </div>
+        <div style={styles.right}>
+          <Nav />
         </div>
       </header>
       <main style={styles.main}>{children}</main>

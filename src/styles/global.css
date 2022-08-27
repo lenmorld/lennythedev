@@ -43,12 +43,15 @@ header {
     top: 0;
     /* backgroundColor: 'var(--color-background)', */
     z-index: 1; /* prevent blog elements from going on top */
-}
 
-header .max-width-container {
     max-width: 80%;
-    margin: 0 auto;
-    padding: 2rem 2rem 0 2rem;
+    margin: 2rem auto 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 main {
