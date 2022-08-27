@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { Link } from 'gatsby'
 
 import { FiMenu } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
-import ListLink from './link'
 import ThemeSwitch from './themeSwitch'
 
 const pages = [
@@ -107,9 +107,9 @@ function Nav() {
       {!showMobileNav && <FiMenu className="menu" onClick={openMobileNav} />}
       <ul>
         {pages.map((page) => (
-          <ListLink key={page.name} to={page.path}>
-            {page.name}
-          </ListLink>
+          <li key={page.name}>
+            <Link to={page.path}>{page.name}</Link>
+          </li>
         ))}
         <li>
           <ThemeSwitch />
