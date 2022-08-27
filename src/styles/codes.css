@@ -2,7 +2,7 @@
 
 
 .gatsby-highlight code[class*="language-"], :not(pre) > code[class*="language-"]  {
-    font-size: 0.75em;
+    font-size: 0.75rem;
 }
 
 :not(pre) > code[class*="language-"] {
@@ -13,5 +13,12 @@
     background: var(--color-subtle-background); 
     color: inherit;
     text-shadow: none;
+}
+
+@media only screen and (max-width: 600px) {
+    code[class*="language-"], pre[class*="language-"] {
+        white-space: pre-wrap;
+        font-size: 0.75rem;
+    }
 }
 

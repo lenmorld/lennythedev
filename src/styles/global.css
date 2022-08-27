@@ -11,7 +11,15 @@
 
 html {
     font-size: 125%;
+    /* font-size: 62.5%; */
     line-height: 1.45;
+}
+
+@media only screen and (max-width: 480px) {
+    /* responsive font-size */
+    html {
+        font-size: 100%;
+    }
 }
 
 html,
@@ -65,7 +73,7 @@ main {
     margin: 0 auto;
 }
 
-@media only screen and (max-width: 641px) {
+@media only screen and (max-width: 992px) {
     main {
         max-width: 80%;
     }
@@ -104,11 +112,11 @@ h1 {
 }
 
 h2 {
-    font-size: 1.51572rem;
+    font-size: 1.5rem;
 }
 
 h3 {
-    font-size: 1.31951rem;
+    font-size: 1.3rem;
 }
 
 h4 {
@@ -116,11 +124,11 @@ h4 {
 }
 
 h5 {
-    font-size: 0.87055rem;
+    font-size: 0.875rem;
 }
 
 h6 {
-    font-size: 0.81225rem;
+    font-size: 0.75rem;
 }
 
 a {
